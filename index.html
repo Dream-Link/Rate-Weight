@@ -10,15 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <style>
         :root {
-            --bg-color: #f4f7fc; --container-bg: #ffffff; --primary-color: #6a5af9;
-            --primary-hover: #5042d3; --text-color: #343d4f; --secondary-text-color: #6e7a8e;
-            --border-color: #e6e9f0; --display-bg: #23252f;
+            --bg-color: #1a202c; --container-bg: #2d3748; --primary-color: #667eea;
+            --primary-hover: #5a69d4; --text-color: #f7fafc; --secondary-text-color: #a0aec0;
+            --border-color: #4a5568; --display-bg: rgba(26, 32, 44, 0.7);
             --display-text-weight: #81e6d9; --display-text-price: #f6ad55;
-            --shadow: 0 8px 32px rgba(106, 90, 249, 0.1); --danger-color: #f74d6c;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3); --danger-color: #e53e3e;
             --rounded-radius: 16px; --transition-duration: 0.2s ease-in-out;
         }
         
@@ -37,27 +35,28 @@
         .theme-wine { --bg-color: #880e4f; --container-bg: #ad1457; --primary-color: #ec407a; --text-color: #f7fafc; --secondary-text-color: #fce4ec; --border-color: #c2185b; }
 
         /* Light Themes */
+        .theme-light-default { background: #f4f7fc; --container-bg: #ffffff; --primary-color: #6a5af9; --text-color: #343d4f; --secondary-text-color: #6e7a8e; --border-color: #e6e9f0; }
         .theme-light-blue { background: #e3f2fd; --container-bg: #fff; --primary-color: #1976d2; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
         .theme-light-green { background: #e8f5e9; --container-bg: #fff; --primary-color: #388e3c; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
         .theme-light-orange { background: #fff3e0; --container-bg: #fff; --primary-color: #f57c00; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
         
         /* Gradient Themes */
-        .theme-deep-space { background: linear-gradient(135deg, #000000, #434343); --container-bg: rgba(0,0,0,0.2); --primary-color: #74ebd5; --text-color: #f7fafc;}
-        .theme-mango-dream { background: linear-gradient(135deg, #f2994a, #f2c94c); --container-bg: rgba(255,255,255,0.8); --primary-color: #d85d11; --text-color: #333; --secondary-text-color: #555; }
-        .theme-pinky-promise { background: linear-gradient(135deg, #ffdde1, #ee9ca7); --container-bg: rgba(255,255,255,0.8); --primary-color: #c43c54; --text-color: #444; --secondary-text-color: #666; }
-        .theme-royal-purple { background: linear-gradient(135deg, #5f2c82, #49a09d); --container-bg: rgba(0,0,0,0.2); --primary-color: #a770ef; --text-color: #f7fafc;}
-        .theme-bloody-mary { background: linear-gradient(135deg, #ff512f, #dd2476); --container-bg: rgba(0,0,0,0.2); --primary-color: #fff0f5; --text-color: #f7fafc;}
+        .theme-deep-space { background: linear-gradient(135deg, #000000, #434343); --container-bg: rgba(0,0,0,0.2); --primary-color: #74ebd5; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
+        .theme-mango-dream { background: linear-gradient(135deg, #f2994a, #f2c94c); --container-bg: rgba(255,255,255,0.8); --primary-color: #d85d11; --text-color: #333; --secondary-text-color: #555; --border-color: rgba(0,0,0,0.1); }
+        .theme-pinky-promise { background: linear-gradient(135deg, #ffdde1, #ee9ca7); --container-bg: rgba(255,255,255,0.8); --primary-color: #c43c54; --text-color: #444; --secondary-text-color: #666; --border-color: rgba(0,0,0,0.1); }
+        .theme-royal-purple { background: linear-gradient(135deg, #5f2c82, #49a09d); --container-bg: rgba(0,0,0,0.2); --primary-color: #a770ef; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
+        .theme-bloody-mary { background: linear-gradient(135deg, #ff512f, #dd2476); --container-bg: rgba(0,0,0,0.2); --primary-color: #fff0f5; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
 
         /* Animated Gradients */
         @keyframes animatedGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .theme-aurora { background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 15s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc;}
-        .theme-liquid-metal { background: linear-gradient(-45deg, #d7d2cc, #304352, #d7d2cc, #304352); background-size: 400% 400%; animation: animatedGradient 10s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc;}
-        .theme-synthwave { background: linear-gradient(-45deg, #f02fc2, #6094ea, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 18s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc;}
+        .theme-aurora { background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 15s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
+        .theme-liquid-metal { background: linear-gradient(-45deg, #d7d2cc, #304352, #d7d2cc, #304352); background-size: 400% 400%; animation: animatedGradient 10s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
+        .theme-synthwave { background: linear-gradient(-45deg, #f02fc2, #6094ea, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 18s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
         
         /* 3D Textures */
-        .theme-carbon-fiber { background-color: #222; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="28" height="49" viewBox="0 0 28 49"%3E%3Cg fill-rule="evenodd"%3E%3Cg id="hexagons" fill="%23333" fill-opacity="0.4" fill-rule="nonzero"%3E%3Cpath d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.99-7.5L26 15v18.5l-13 7.5L0 33.5V15z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); --container-bg: #1a1a1a; --primary-color: #08f7fe; --text-color: #f7fafc;}
-        .theme-blueprint { background-color: #2a4365; background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cpath d="M0 50V0h50a50 50 0 0 1 0 100H0" fill="none" stroke="%233a5378" stroke-width="2"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23p)"/%3E%3C/svg%3E'); --container-bg: #1a365d; --primary-color: #fff; --text-color: #f7fafc;}
-        .theme-wood { background-color: #6B4F35; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"%3E%3Cg fill="%235A422B" fill-opacity="0.4"%3E%3Cpath fill-rule="evenodd" d="M11 0l5 20-5-5-5 5L11 0zm22 21l-5 20 5 5 5-5-5-20zm22 21l5 20-5-5-5 5 5-20zM0 31l5 20-5-5-5 5 5-20zm66 0l5 20-5-5-5 5 5-20zM22 41l-5 20 5 5 5-5-5-20z"/%3E%3C/g%3E%3C/svg%3E'); --container-bg: #4E3629; --primary-color: #D2B48C; --text-color: #f7fafc;}
+        .theme-carbon-fiber { background-color: #222; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="28" height="49" viewBox="0 0 28 49"%3E%3Cg fill-rule="evenodd"%3E%3Cg id="hexagons" fill="%23333" fill-opacity="0.4" fill-rule="nonzero"%3E%3Cpath d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.99-7.5L26 15v18.5l-13 7.5L0 33.5V15z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); --container-bg: #1a1a1a; --primary-color: #08f7fe; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #444;}
+        .theme-blueprint { background-color: #2a4365; background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cpath d="M0 50V0h50a50 50 0 0 1 0 100H0" fill="none" stroke="%233a5378" stroke-width="2"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23p)"/%3E%3C/svg%3E'); --container-bg: #1a365d; --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
+        .theme-wood { background-color: #6B4F35; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"%3E%3Cg fill="%235A422B" fill-opacity="0.4"%3E%3Cpath fill-rule="evenodd" d="M11 0l5 20-5-5-5 5L11 0zm22 21l-5 20 5 5 5-5-5-20zm22 21l5 20-5-5-5 5 5-20zM0 31l5 20-5-5-5 5 5-20zm66 0l5 20-5-5-5 5 5-20zM22 41l-5 20 5 5 5-5-5-20z"/%3E%3C/g%3E%3C/svg%3E'); --container-bg: #4E3629; --primary-color: #D2B48C; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: #6d4c41;}
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg-color, linear-gradient(135deg, #1a202c, #283149)); color: var(--text-color, #343d4f); }
@@ -84,7 +83,7 @@
         .result-area { text-align: center; padding: 20px; background: var(--display-bg, rgba(26, 32, 44, 0.7)); border-radius: var(--rounded-radius); margin-bottom: 25px; border: 1px solid var(--border-color, #4a5568); backdrop-filter: blur(8px); }
         .result-area label { font-size: 1rem; color: var(--secondary-text-color, #6e7a8e); }
         .result-area #priceDisplay { font-size: 3rem; font-weight: 700; color: var(--primary-color); margin-top: 5px; }
-        .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: auto; }
+        .action-buttons { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
         .btn { padding: 16px; font-size: 1rem; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all var(--transition-duration); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         .btn:active { transform: scale(0.96); box-shadow: none; }
         .btn-primary { background: var(--primary-color); color: #fff !important; }
@@ -96,10 +95,14 @@
         .modal-header { border-bottom: 1px solid var(--border-color, #e6e9f0); padding: 20px 25px 15px; display: flex; justify-content: space-between; align-items: center; }
         .modal-body { padding: 25px; }
         .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .form-group label, #productList li span { color: var(--text-color); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; color: var(--secondary-text-color); }
+        .form-group input, .form-group select { width: 100%; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 12px; padding: 14px; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 40%, transparent); }
+        #productList { list-style: none; max-height: 300px; overflow-y: auto; color: var(--text-color); }
+        #productList li { background-color: rgba(0,0,0,0.2); padding: 10px 15px; margin-bottom: 5px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; color: var(--text-color); }
+        body[class*="light"] #productList li { background-color: rgba(0,0,0,0.05); }
         #productSelect option { background: var(--container-bg, #ffffff); color: var(--text-color); }
-        #productList li { background-color: rgba(0,0,0,0.1); padding: 10px 15px; margin-bottom: 5px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-        body[class*="light"] #productList li, body:not([class]) #productList li { background-color: rgba(0,0,0,0.05); } /* Light themes list item background */
         .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 15px; }
         .theme-option { height: 60px; border-radius: 15px; border: 2px solid var(--border-color, #e6e9f0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: transform 0.15s ease-in-out; cursor: pointer; }
         .pos-style-view { font-family: 'Courier New', monospace; background: var(--container-bg); color: var(--text-color); padding: 20px; border-radius: 12px; font-size: 14px; border: 1px solid var(--border-color); }
@@ -135,7 +138,6 @@
             </div>
             <div class="action-buttons">
                 <button id="breakdownBtn" class="btn btn-secondary">विवरण देखें</button>
-                <button id="printBtn" class="btn btn-primary">रसीद प्रिंट करें</button>
             </div>
         </div>
     </div>
@@ -145,7 +147,7 @@
     <div id="breakdownModal" class="modal"></div>
     <div id="themeModal" class="modal"></div>
     <div id="storeInfoModal" class="modal"></div>
-    <div id="receipt" style="display: none;"></div>
+    <div id="receipt" style="position: absolute; left: -9999px; top: -9999px;"></div>
 
     <script>
     class WeighingApp {
@@ -164,7 +166,8 @@
                 'Rose': { class: 'theme-rose', color: '#880e4f' }, 'Sky': { class: 'theme-sky', color: '#0277bd' },
                 'Mint': { class: 'theme-mint', color: '#00695c' }, 'Lavender': { class: 'theme-lavender', color: '#4527a0' },
                 'Sand': { class: 'theme-sand', color: '#4e342e' }, 'Charcoal': { class: 'theme-charcoal', color: '#37474f' },
-                'Wine': { class: 'theme-wine', color: '#ad1457' }, 'Light Blue': { class: 'theme-light-blue', color: '#1976d2' },
+                'Wine': { class: 'theme-wine', color: '#ad1457' }, 'Light Default': { class: '', color: '#6a5af9' },
+                'Light Blue': { class: 'theme-light-blue', color: '#1976d2' },
                 'Light Green': { class: 'theme-light-green', color: '#388e3c' }, 'Light Orange': { class: 'theme-light-orange', color: '#f57c00' },
                 'Deep Space (Grad)': { class: 'theme-deep-space', color: 'linear-gradient(135deg, #000, #434343)' },
                 'Mango Dream (Grad)': { class: 'theme-mango-dream', color: 'linear-gradient(135deg, #f2994a, #f2c94c)' },
@@ -193,7 +196,6 @@
             document.getElementById('resetBtn').addEventListener('click', () => this.resetInput());
             document.getElementById('interchangeBtn').addEventListener('click', () => this.toggleMode());
             document.getElementById('breakdownBtn').addEventListener('click', () => this.showBreakdown());
-            document.getElementById('printBtn').addEventListener('click', () => this.printReceipt());
             this.dom.mainInput.addEventListener('input', () => this.calculate());
             this.dom.productSelect.addEventListener('change', () => this.calculate());
             Object.values(this.dom.modals).forEach(modal => { modal.addEventListener('click', e => { if (e.target.classList.contains('close-btn') || e.target === modal) this.closeModal(modal); }); });
@@ -228,7 +230,6 @@
         resetInput() { this.dom.mainInput.value = ''; this.calculate(); }
         
         toggleMode() {
-            const oldInputValue = parseFloat(this.dom.mainInput.value.replace(/[^0-9.]/g, '')) || 0;
             const oldOutputValue = parseFloat(this.dom.priceDisplay.textContent.replace(/[^0-9.]/g, '')) || 0;
             this.currentMode = (this.currentMode === 'weightToPrice') ? 'priceToWeight' : 'weightToPrice';
             this.dom.displayArea.classList.toggle('price-mode');
@@ -336,55 +337,6 @@
             };
             this.openModal(this.dom.modals.theme);
         }
-
-        printReceipt() {
-            const product = this.products.find(p => p.id == this.dom.productSelect.value);
-            const value = parseFloat(this.dom.mainInput.value) || 0;
-            if (!product || value === 0) return alert("रसीद के लिए कृपया कोई मान दर्ज करें।");
-            const { finalPrice, finalWeight, grossPrice, commissionAmount } = this.getCalculationDetails(product, value);
-            
-            const receiptEl = document.getElementById('receipt');
-            const receiptHTML = `
-                <div style="padding: 20px; background: #fff; color: #000; font-family: 'Courier New', monospace; width: 320px;">
-                    <div style="font-size: 18px; font-weight: bold; text-align: center; margin-bottom: 5px;">${this.storeInfo.name}</div>
-                    <div style="text-align: center; font-size: 12px; margin-bottom: 10px;">${this.storeInfo.address}</div>
-                    <div style="border-top: 1px dashed #000; margin: 10px 0;"></div>
-                    <div style="font-size: 12px;">Date: ${new Date().toLocaleString('hi-IN')}</div>
-                    <div style="font-size: 12px;">Receipt#: ${Date.now() % 100000}</div>
-                    <div style="border-top: 1px dashed #000; margin: 10px 0;"></div>
-                    <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #000;">
-                        <thead><tr><th style="padding: 5px 0; text-align: left; border-bottom: 1px dashed #000;">Item/Wt</th><th style="padding: 5px 0; text-align: right; border-bottom: 1px dashed #000;">Price</th></tr></thead>
-                        <tbody><tr>
-                            <td style="padding: 3px 0;">${product.name} (${finalWeight.toFixed(2)} g)</td>
-                            <td style="padding: 3px 0; text-align: right;">₹${grossPrice.toFixed(2)}</td>
-                        </tr></tbody>
-                    </table>
-                    <div style="border-top: 1px dashed #000; margin: 10px 0;"></div>
-                    <table style="width: 100%; font-size: 12px; color: #000;">
-                        <tr><td>Subtotal:</td><td style="text-align: right;">₹${grossPrice.toFixed(2)}</td></tr>
-                        <tr><td>Commission:</td><td style="text-align: right;">-₹${commissionAmount.toFixed(2)}</td></tr>
-                    </table>
-                    <div style="border-top: 1px solid #000; margin: 8px 0;"></div>
-                    <table style="width: 100%; font-size: 16px; font-weight: bold; color: #000;">
-                        <tr><td>Total:</td><td style="text-align: right;">₹${finalPrice.toFixed(2)}</td></tr>
-                    </table>
-                    <div style="border-top: 1px dashed #000; margin: 10px 0;"></div>
-                    <p style="text-align: center; margin-top: 10px; font-size: 12px; color: #000;">Thank you!</p>
-                </div>`;
-            receiptEl.innerHTML = receiptHTML;
-
-            const elementToCapture = receiptEl.firstChild;
-            receiptEl.style.display = 'block';
-            html2canvas(elementToCapture, { scale: 4 }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `receipt-${Date.now()}.png`;
-                link.href = canvas.toDataURL('image/png');
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                receiptEl.style.display = 'none';
-            });
-        }
         
         importData() {
             const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
@@ -414,6 +366,7 @@
             URL.revokeObjectURL(link.href);
         }
     }
+
     new WeighingApp();
     </script>
 </body>

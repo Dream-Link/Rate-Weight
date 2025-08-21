@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Weighing Calculator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        /* CSS स्टाइलिंग यहाँ है */
+        :root {
+            --bg-color: #f4f7fc;
+            --container-bg: #ffffff;
+            --primary-color: #6a5af9;
+            --primary-hover: #5042d3;
+            --text-color: #343d4f;
+            --border-color: #e6e9f0;
+            --display-bg: #23252f;
+            --display-text-weight: #00ff7f; /* SpringGreen */
+            --display-text-price: #ffae42;  /* YellowOrange */
+            --shadow: 0 8px 32px rgba(106, 90, 249, 0.15);
+            --danger-color: #f74d6c;
+        }
+
+        /* --- सभी 20+ थीम्स --- */
+        .theme-dark { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --border-color: #333; --shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .theme-ocean { --primary-color: #1abc9c; --primary-hover: #16a085; }
+        .theme-sunset { --primary-color: #e74c3c; --primary-hover: #c0392b; }
+        .theme-sunrise { --bg-color: #ff7e5f; --container-bg: linear-gradient(145deg, #ff9a7f, #ffb38d); --primary-color: #fff; --text-color: #fff; --border-color: rgba(255,255,255,0.3); --primary-hover: #fff; --display-bg: rgba(0,0,0,0.2); }
+        .theme-purple-bliss { --bg-color: #6a5af9; --container-bg: linear-gradient(145deg, #7b6efc, #5949f5); --primary-color: #fff; --text-color: #fff; --border-color: rgba(255,255,255,0.3); --primary-hover: #fff; --display-bg: rgba(0,0,0,0.2); }
+        .theme-night-sky { --bg-color: #0f2027; --container-bg: linear-gradient(145deg, #203a43, #2c5364); --primary-color: #fff; --text-color: #fff; --border-color: rgba(255,255,255,0.3); --primary-hover: #fff; --display-bg: rgba(0,0,0,0.2); }
+        .theme-minty { --bg-color: #00b09b; --container-bg: linear-gradient(145deg, #30c0ab, #60d0bd); --primary-color: #fff; --text-color: #fff; --border-color: rgba(255,255,255,0.3); --primary-hover: #fff; --display-bg: rgba(0,0,0,0.2); }
+        .theme-carbon { --bg-color: #333; --container-bg: #444; --text-color: #f5f5f5; --primary-color: #00bcd4; --primary-hover: #00acc1; --border-color: #555; background-image: url('data:image/svg+xml,%3Csvg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h6v6H0V0zm6 6h6v6H6V6z" fill="%23555" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E'); }
+        .theme-paper { --bg-color: #fdfaf3; --container-bg: #fff; --text-color: #5a5a5a; --primary-color: #d2691e; --primary-hover: #a0522d; --border-color: #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .theme-rose { --primary-color: #e91e63; --primary-hover: #c2185b; }
+        .theme-sky { --primary-color: #03a9f4; --primary-hover: #0288d1; }
+        .theme-forest { --primary-color: #4caf50; --primary-hover: #388e3c; }
+        .theme-gold { --primary-color: #ffc107; --primary-hover: #ffa000; }
+        .theme-royal { --primary-color: #9c27b0; --primary-hover: #7b1fa2; }
+        .theme-fire { --primary-color: #ff5722; --primary-hover: #e64a19; }
+        .theme-lime { --primary-color: #cddc39; --primary-hover: #afb42b; }
+        .theme-indigo { --primary-color: #3f51b5; --primary-hover: #303f9f; }
+        .theme-teal { --primary-color: #009688; --primary-hover: #00796b; }
+        .theme-slate { --primary-color: #607d8b; --primary-hover: #455a64; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.4s ease;
+        }
+
+        .calculator-container {
+            width: 100%; height: 100%; min-height: 100vh;
+            background: var(--container-bg);
+            display: flex; flex-direction: column;
+            transition: background 0.4s ease;
+        }
+        
+        @media (min-width: 500px) {
+            body { display: flex; justify-content: center; align-items: center; padding: 20px; }
+            .calculator-container {
+                width: 100%; max-width: 420px; min-height: auto; max-height: 90vh;
+                border-radius: 24px; box-shadow: var(--shadow); overflow: hidden;
+            }
+        }
+        
+        .main-content { padding: 0 25px 25px 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; }
+        .header {
+            font-size: 1.5rem; color: var(--primary-color); font-weight: 500; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; transition: color 0.3s;
+        }
+        .header .material-icons { font-size: 16px; opacity: 0.6; }
+        .top-bar-actions { display: flex; }
+
+        .icon-btn {
+            background: transparent; border: none; color: var(--text-color); cursor: pointer; padding: 8px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+        .icon-btn:hover { background-color: var(--border-color); color: var(--primary-color); }
+        .icon-btn:active { transform: scale(0.9); }
+        
+        .display-area {
+            background: var(--display-bg); border-radius: 16px; padding: 20px;
+            margin-bottom: 25px; text-align: right; position: relative;
+        }
+        #resetBtn { position: absolute; top: 10px; right: 10px; color: #7f8c8d; }
+        #resetBtn:hover { background-color: rgba(255, 255, 255, 0.1); color: #fff; }
+        #resetBtn .material-icons { font-size: 20px; }
+        .display-area label { display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 5px; text-align: left; }
+        
+        #mainInput {
+            width: 100%; background: transparent; border: none;
+            font-family: 'Chakra Petch', 'Orbitron', sans-serif;
+            font-size: 3.5rem; font-weight: 700; text-align: right; outline: none;
+            letter-spacing: 2px; color: var(--display-text-weight);
+            transition: color 0.4s ease;
+        }
+        .display-area.price-mode #mainInput { color: var(--display-text-price); }
+        
+        .controls { display: flex; gap: 15px; align-items: center; margin-bottom: 25px; }
+        .controls select {
+            flex-grow: 1; padding: 14px; border: 1px solid var(--border-color);
+            border-radius: 12px; background-color: transparent;
+            color: var(--text-color); font-size: 1rem;
+            outline-color: var(--primary-color);
+        }
+        #interchangeBtn { color: var(--primary-color); background-color: var(--border-color);}
+
+        .result-area {
+            text-align: center; padding: 20px; background: var(--bg-color);
+            border-radius: 16px; margin-bottom: 25px; transition: background-color 0.3s;
+        }
+        .result-area label { font-size: 1rem; color: var(--text-color); opacity: 0.7; }
+        .result-area #priceDisplay {
+            font-size: 2.8rem; font-weight: 700; color: var(--primary-color);
+            margin-top: 5px; transition: color 0.3s;
+        }
+        
+        .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: auto; }
+        .btn {
+            padding: 15px; font-size: 1rem; border: none; border-radius: 12px;
+            cursor: pointer; font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-secondary { background-color: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); }
+        
+        .modal {
+            display: flex; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
+        }
+        .modal.show { opacity: 1; visibility: visible; }
+        .modal-content {
+            background-color: var(--container-bg); padding: 25px; border-radius: 16px;
+            width: 90%; max-width: 500px; transform: scale(0.95); transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content { transform: scale(1); }
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color);
+        }
+        .modal-header h2 { color: var(--primary-color); }
+        .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px;
+            background-color: var(--bg-color); color: var(--text-color);
+        }
+        .discount-group { display: flex; gap: 10px; }
+        
+        #productList { list-style: none; max-height: 300px; overflow-y: auto; }
+        #productList li {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px; border-bottom: 1px solid var(--border-color);
+        }
+        .product-actions .material-icons { font-size: 20px; cursor: pointer; margin-left: 10px; }
+        .product-actions .edit-btn { color: var(--primary-color); }
+        .product-actions .delete-btn { color: var(--danger-color); }
+        
+        .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 15px; }
+        .theme-option {
+            height: 60px; border-radius: 12px; cursor: pointer;
+            border: 2px solid var(--border-color); transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .theme-option:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        
+        .breakdown-list { list-style: none; }
+        .breakdown-list li {
+            display: flex; justify-content: space-between; padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        #receipt {
+            display: none; width: 302px; padding: 15px;
+            font-family: 'Lucida Console', 'Courier New', monospace;
+            color: #000; background: #fff; line-height: 1.4;
+        }
+        #receipt * { margin: 0; padding: 0; font-size: 11px; }
+        #receipt #receiptStoreName { font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 2px; }
+        #receipt #receiptStoreAddress { text-align: center; margin-bottom: 8px; }
+        #receipt .info-line { display: flex; justify-content: space-between; margin-bottom: 1px; }
+        #receipt table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+        #receipt th { border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 4px 0; text-align: left;}
+        #receipt td { padding: 3px 0; }
+        #receipt .text-right { text-align: right; }
+        #receipt .totals-table { width: 100%; }
+        #receipt .totals-table td { padding: 1px 0; }
+        #receipt .total-line { font-weight: bold; font-size: 13px; border-top: 1px dashed #000; padding-top: 4px; }
+        #receipt .total-line td { font-size: 13px; }
+        #receipt .footer { text-align: center; margin-top: 10px; }
+        #receipt .divider { border-top: 1px dashed #000; height: 1px; margin: 8px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <div class="top-bar">
+            <h2 class="header" id="headerBtn">
+                <span id="storeName">Smart Weigh</span>
+                <i class="material-icons">edit</i>
+            </h2>
+            <div class="top-bar-actions">
+                <button id="importBtn" class="icon-btn" title="प्रोडक्ट्स इम्पोर्ट करें"><i class="material-icons">file_upload</i></button>
+                <button id="exportBtn" class="icon-btn" title="प्रोडक्ट्स एक्सपोर्ट करें"><i class="material-icons">file_download</i></button>
+                <button id="addProductBtn" class="icon-btn" title="नया प्रोडक्ट जोड़ें"><i class="material-icons">add_circle</i></button>
+                <button id="manageProductsBtn" class="icon-btn" title="प्रोडक्ट मैनेज करें"><i class="material-icons">inventory</i></button>
+                <button id="themeBtn" class="icon-btn" title="थीम बदलें"><i class="material-icons">palette</i></button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="display-area" id="displayArea">
+                <button id="resetBtn" class="icon-btn" title="रीसेट करें"><i class="material-icons">restart_alt</i></button>
+                <label id="inputLabel">वज़न (ग्राम में)</label>
+                <input type="text" id="mainInput" inputmode="decimal" placeholder="0" pattern="[0-9]*\.?[0-9]*">
+            </div>
+
+            <div class="controls">
+                <select id="productSelect"></select>
+                <button id="interchangeBtn" class="icon-btn" title="वज़न/कीमत बदलें"><i class="material-icons">swap_horiz</i></button>
+            </div>
+
+            <div class="result-area">
+                <label id="resultLabel">कुल कीमत</label>
+                <div id="priceDisplay">₹0.00</div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="breakdownBtn" class="btn btn-secondary">विवरण देखें</button>
+                <button id="printBtn" class="btn btn-primary">रसीद प्रिंट करें</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="productModal" class="modal"></div>
+    <div id="manageModal" class="modal"></div>
+    <div id="breakdownModal" class="modal"></div>
+    <div id="themeModal" class="modal"></div>
+    <div id="storeInfoModal" class="modal"></div>
+    
+    <div id="receipt">
+        <div id="receiptStoreName"></div>
+        <div id="receiptStoreAddress"></div>
+        <div class="divider"></div>
+        <div class="info-line"><span>Date:</span><span id="receiptDate"></span></div>
+        <div class="info-line"><span>Receipt#:</span><span id="receiptNumber"></span></div>
+        <table>
+            <thead><tr><th>Item/Wt</th><th class="text-right">Price</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><span id="receiptItem"></span><br>@<span id="receiptRate"></span></td>
+                    <td class="text-right" id="receiptGrossPrice"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="divider"></div>
+        <table class="totals-table">
+            <tbody>
+                <tr><td>Subtotal:</td><td class="text-right" id="receiptSubtotal"></td></tr>
+                <tr><td>Discount:</td><td class="text-right" id="receiptDiscount"></td></tr>
+                <tr class="total-line"><td>Total:</td><td class="text-right" id="receiptTotal"></td></tr>
+            </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="footer">Thank you for your visit!</p>
+    </div>
+
+    <script>
+    // --- जावास्क्रिप्ट का नया और सुधारा हुआ कोड ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // ज़रूरी DOM एलिमेंट्स को पहले ही चुन लें
+        const getEl = (id) => document.getElementById(id);
+        const mainInput = getEl('mainInput'), displayArea = getEl('displayArea');
+        const storeNameEl = getEl('storeName'), productSelect = getEl('productSelect');
+        const priceDisplay = getEl('priceDisplay');
+        const modals = {
+            product: getEl('productModal'), manage: getEl('manageModal'),
+            breakdown: getEl('breakdownModal'), theme: getEl('themeModal'), store: getEl('storeInfoModal')
+        };
+        const mainButtons = {
+            headerBtn: getEl('headerBtn'), addProductBtn: getEl('addProductBtn'),
+            manageProductsBtn: getEl('manageProductsBtn'), themeBtn: getEl('themeBtn'),
+            importBtn: getEl('importBtn'), exportBtn: getEl('exportBtn'),
+            resetBtn: getEl('resetBtn'), interchangeBtn: getEl('interchangeBtn'),
+            breakdownBtn: getEl('breakdownBtn'), printBtn: getEl('printBtn')
+        };
+
+        // ऐप की स्थिति (State)
+        let products = [], storeInfo = {};
+        let currentMode = 'weightToPrice', nextProductId = 1;
+
+        // थीम्स की जानकारी (यह नहीं बदली है)
+        const themes = { 'Default': { class: '', color: '#6a5af9' }, 'Dark': { class: 'theme-dark', color: '#333' }, 'Ocean': { class: 'theme-ocean', color: '#1abc9c' }, 'Sunset': { class: 'theme-sunset', color: '#e74c3c' }, 'Sunrise': { class: 'theme-sunrise', color: '#ff7e5f' }, 'Purple Bliss': { class: 'theme-purple-bliss', color: '#6a5af9' }, 'Night Sky': { class: 'theme-night-sky', color: '#2c5364' }, 'Minty': { class: 'theme-minty', color: '#00b09b' }, 'Carbon': { class: 'theme-carbon', color: '#00bcd4' }, 'Paper': { class: 'theme-paper', color: '#d2691e' }, 'Rose': { class: 'theme-rose', color: '#e91e63' }, 'Sky': { class: 'theme-sky', color: '#03a9f4' }, 'Forest': { class: 'theme-forest', color: '#4caf50' }, 'Gold': { class: 'theme-gold', color: '#ffc107' }, 'Royal': { class: 'theme-royal', color: '#9c27b0' }, 'Fire': { class: 'theme-fire', color: '#ff5722' }, 'Lime': { class: 'theme-lime', color: '#cddc39' }, 'Indigo': { class: 'theme-indigo', color: '#3f51b5' }, 'Teal': { class: 'theme-teal', color: '#009688' }, 'Slate': { class: 'theme-slate', color: '#607d8b' } };
+
+        // --- सभी इवेंट लिस्टनर्स एक जगह ---
+        function attachEventListeners() {
+            mainButtons.headerBtn.addEventListener('click', openStoreInfoModal);
+            mainButtons.addProductBtn.addEventListener('click', openAddProductModal);
+            mainButtons.manageProductsBtn.addEventListener('click', openManageModal);
+            mainButtons.themeBtn.addEventListener('click', openThemeModal);
+            mainButtons.importBtn.addEventListener('click', importData);
+            mainButtons.exportBtn.addEventListener('click', exportData);
+            mainButtons.resetBtn.addEventListener('click', resetInput);
+            mainButtons.interchangeBtn.addEventListener('click', toggleMode);
+            mainButtons.breakdownBtn.addEventListener('click', showBreakdown);
+            mainButtons.printBtn.addEventListener('click', printReceipt);
+            
+            mainInput.addEventListener('input', calculate);
+            productSelect.addEventListener('change', calculate);
+
+            Object.values(modals).forEach(modal => {
+                modal.addEventListener('click', e => {
+                    if (e.target === modal || e.target.classList.contains('close-btn')) {
+                        closeModal(modal);
+                    }
+                });
+            });
+        }
+        
+        // --- ऐप शुरू करें ---
+        function initializeApp() {
+            injectModalHTML();
+            attachEventListeners(); // अब इवेंट लिस्टनर्स सही समय पर अटैच होंगे
+            loadStoreInfo();
+            loadProducts();
+            populateProductSelect();
+            const savedTheme = localStorage.getItem('weighingTheme') || '';
+            document.body.className = savedTheme;
+            calculate();
+        }
+
+        // --- HTML इंजेक्शन ---
+        function injectModalHTML() {
+            const createModalContent = (title, body) => `<div class="modal-content"><div class="modal-header"><h2>${title}</h2><span class="close-btn">&times;</span></div>${body}</div>`;
+            
+            modals.product.innerHTML = createModalContent('प्रोडक्ट की जानकारी', `<form id="productForm"><input type="hidden" id="productId"><div class="form-group"><label>प्रोडक्ट का नाम</label><input type="text" id="productName" required></div><div class="form-group"><label>मूल्य (₹)</label><input type="number" id="productPrice" required></div><div class="form-group"><label>वज़न यूनिट</label><select id="productUnit"><option value="100">प्रति 100g</option><option value="200">प्रति 200g</option><option value="500">प्रति 500g</option><option value="1000" selected>प्रति 1kg</option></select></div><div class="form-group"><label>छूट (वैकल्पिक)</label><div class="discount-group"><input type="number" id="productDiscount" placeholder="0"><select id="discountType"><option value="percent">%</option><option value="manual">₹</option></select></div></div><button type="submit" class="btn btn-primary" style="width:100%;">सेव करें</button></form>`);
+            modals.manage.innerHTML = createModalContent('प्रोडक्ट मैनेज करें', '<ul id="productList"></ul>');
+            modals.breakdown.innerHTML = createModalContent('गणना का विवरण', '<ul class="breakdown-list" id="breakdownDetails"></ul>');
+            modals.theme.innerHTML = createModalContent('थीम चुनें', '<div class="theme-grid" id="themeGrid"></div>');
+            modals.store.innerHTML = createModalContent('स्टोर की जानकारी', `<form id="storeInfoForm"><div class="form-group"><label>स्टोर/दुकान का नाम</label><input type="text" id="inputStoreName" required></div><div class="form-group"><label>पता</label><input type="text" id="inputStoreAddress"></div><button type="submit" class="btn btn-primary" style="width:100%;">सेव करें</button></form>`);
+
+            // फॉर्म और लिस्ट के इवेंट्स को इंजेक्शन के तुरंत बाद अटैच करें
+            getEl('productForm').addEventListener('submit', handleFormSubmit);
+            getEl('storeInfoForm').addEventListener('submit', handleStoreInfoSubmit);
+            getEl('productList').addEventListener('click', handleProductListActions);
+        }
+        
+        // --- डेटा हैंडलिंग ---
+        function loadStoreInfo() {
+            const savedInfo = localStorage.getItem('storeInfo');
+            storeInfo = savedInfo ? JSON.parse(savedInfo) : { name: 'Smart Weigh', address: 'Jaipur, Rajasthan' };
+            storeNameEl.textContent = storeInfo.name;
+        }
+        function handleStoreInfoSubmit(e){
+            e.preventDefault();
+            storeInfo.name = getEl('inputStoreName').value;
+            storeInfo.address = getEl('inputStoreAddress').value;
+            localStorage.setItem('storeInfo', JSON.stringify(storeInfo));
+            storeNameEl.textContent = storeInfo.name;
+            closeModal(modals.store);
+        }
+        function loadProducts() {
+            const storedProducts = localStorage.getItem('weighingProducts');
+            if (storedProducts) {
+                products = JSON.parse(storedProducts);
+                nextProductId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            } else {
+                products = [ { id: 1, name: 'Sugar (चीनी)', price: 45, unit: 1000, discount: 5, discountType: 'percent' }, ];
+                nextProductId = 2;
+                saveProducts();
+            }
+        }
+        function saveProducts() { localStorage.setItem('weighingProducts', JSON.stringify(products)); }
+
+        // --- मुख्य फंक्शन ---
+        const openModal = (modal) => modal.classList.add('show');
+        const closeModal = (modal) => modal.classList.remove('show');
+        function resetInput() { mainInput.value = ''; calculate(); mainInput.focus(); }
+        function toggleMode() {
+            currentMode = (currentMode === 'weightToPrice') ? 'priceToWeight' : 'weightToPrice';
+            displayArea.classList.toggle('price-mode');
+            resetInput();
+            const isWeightMode = currentMode === 'weightToPrice';
+            getEl('inputLabel').textContent = isWeightMode ? 'वज़न (ग्राम में)' : 'कीमत (₹ में)';
+            getEl('resultLabel').textContent = isWeightMode ? 'कुल कीमत' : 'कुल वज़न (ग्राम)';
+            priceDisplay.textContent = isWeightMode ? '₹0.00' : '0 g';
+        }
+        function calculate() {
+            const product = products.find(p => p.id == productSelect.value);
+            const value = parseFloat(mainInput.value) || 0;
+            if (!product || value === 0) {
+                priceDisplay.textContent = currentMode === 'weightToPrice' ? '₹0.00' : '0 g'; return;
+            }
+            const pricePerGram = product.price / product.unit;
+            if (currentMode === 'weightToPrice') {
+                const gross = value * pricePerGram;
+                const discount = product.discount && product.discountType === 'percent' ? gross * (product.discount / 100) : (product.discount || 0);
+                priceDisplay.textContent = `₹${Math.max(0, gross - discount).toFixed(2)}`;
+            } else {
+                let gross = value;
+                if(product.discount > 0) gross = product.discountType === 'percent' ? value / (1 - product.discount/100) : value + product.discount;
+                priceDisplay.textContent = `${(gross / pricePerGram).toFixed(2)} g`;
+            }
+        }
+        function populateProductSelect() {
+            const selectedVal = productSelect.value;
+            productSelect.innerHTML = products.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+            if (products.length === 0) productSelect.innerHTML = '<option>प्रोडक्ट जोड़ें</option>';
+            productSelect.value = selectedVal || (products.length > 0 ? products[0].id : '');
+        }
+
+        // --- प्रोडक्ट मैनेजमेंट ---
+        function openAddProductModal() {
+            getEl('productForm').reset();
+            getEl('productId').value = '';
+            modals.product.querySelector('h2').textContent = 'नया प्रोडक्ट जोड़ें';
+            openModal(modals.product);
+        }
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const id = getEl('productId').value;
+            const productData = {
+                name: getEl('productName').value, price: parseFloat(getEl('productPrice').value),
+                unit: parseInt(getEl('productUnit').value), discount: parseFloat(getEl('productDiscount').value) || 0,
+                discountType: getEl('discountType').value
+            };
+            if (id) {
+                const index = products.findIndex(p => p.id == id);
+                if(index > -1) products[index] = { ...products[index], ...productData };
+            } else {
+                products.push({ id: nextProductId++, ...productData });
+            }
+            saveProducts(); populateProductSelect(); calculate();
+            closeModal(modals.product);
+        }
+        function openManageModal() {
+            getEl('productList').innerHTML = products.map(p => `<li><span>${p.name} (₹${p.price}/${p.unit}g)</span><span class="product-actions"><i class="material-icons edit-btn" data-id="${p.id}">edit</i><i class="material-icons delete-btn" data-id="${p.id}">delete</i></span></li>`).join('') || '<li>कोई प्रोडक्ट नहीं मिला।</li>';
+            openModal(modals.manage);
+        }
+        function handleProductListActions(e) {
+            const target = e.target;
+            const id = target.dataset.id;
+            if (!id) return;
+            const productToEdit = products.find(p => p.id == id);
+            if(!productToEdit) return;
+
+            if (target.classList.contains('edit-btn')) {
+                getEl('productId').value = productToEdit.id; getEl('productName').value = productToEdit.name;
+                getEl('productPrice').value = productToEdit.price; getEl('productUnit').value = productToEdit.unit;
+                getEl('productDiscount').value = productToEdit.discount; getEl('discountType').value = productToEdit.discountType;
+                modals.product.querySelector('h2').textContent = 'प्रोडक्ट एडिट करें';
+                closeModal(modals.manage); openModal(modals.product);
+            } else if (target.classList.contains('delete-btn')) {
+                if (confirm(`क्या आप वाकई '${productToEdit.name}' को हटाना चाहते हैं?`)) {
+                    products = products.filter(p => p.id != id);
+                    saveProducts(); populateProductSelect(); calculate(); openManageModal();
+                }
+            }
+        }
+
+        // --- अन्य सभी फंक्शन ---
+        function openStoreInfoModal(){
+            getEl('inputStoreName').value = storeInfo.name;
+            getEl('inputStoreAddress').value = storeInfo.address;
+            openModal(modals.store);
+        }
+        function showBreakdown() {
+            const product = products.find(p => p.id == productSelect.value);
+            const value = parseFloat(mainInput.value) || 0;
+            if (!product || value === 0 || currentMode !== 'weightToPrice') return alert("विवरण केवल 'वज़न से कीमत' मोड में उपलब्ध है।");
+            
+            const pricePerGram = product.price / product.unit;
+            const grossPrice = value * pricePerGram;
+            const discountAmount = product.discountType === 'percent' ? grossPrice * (product.discount / 100) : (product.discount || 0);
+            const finalPrice = Math.max(0, grossPrice - discountAmount);
+            
+            const details = {'प्रोडक्ट': product.name, 'भाव': `₹${product.price}/${product.unit}g`, 'कुल वज़न': `${value.toFixed(2)}g`, 'बिना छूट के कीमत': `₹${grossPrice.toFixed(2)}`, 'छूट': `- ₹${discountAmount.toFixed(2)}`, '<strong>कुल कीमत</strong>': `<strong>₹${finalPrice.toFixed(2)}</strong>`};
+            getEl('breakdownDetails').innerHTML = Object.entries(details).map(([key, val]) => `<li><span>${key}</span><span>${val}</span></li>`).join('');
+            openModal(modals.breakdown);
+        }
+        function openThemeModal() {
+            getEl('themeGrid').innerHTML = Object.entries(themes).map(([name, theme]) => `<div class="theme-option" title="${name}" style="background: ${theme.class.includes('gradient') ? `linear-gradient(135deg, ${theme.color}, #a28089)` : theme.color};" data-themeclass="${theme.class}"></div>`).join('');
+            getEl('themeGrid').onclick = (e) => {
+                if(e.target.classList.contains('theme-option')){
+                    const themeClass = e.target.dataset.themeclass;
+                    document.body.className = themeClass;
+                    localStorage.setItem('weighingTheme', themeClass);
+                    closeModal(modals.theme);
+                }
+            };
+            openModal(modals.theme);
+        }
+        function printReceipt() {
+            const product = products.find(p => p.id == productSelect.value);
+            const weight = parseFloat(mainInput.value) || 0;
+            if (!product || weight === 0 || currentMode !== 'weightToPrice') return alert("रसीद के लिए 'वज़न से कीमत' मोड में वैध वज़न डालें।");
+
+            const pricePerGram = product.price / product.unit;
+            const grossPrice = weight * pricePerGram;
+            const discountAmount = product.discountType === 'percent' ? grossPrice * (product.discount / 100) : (product.discount || 0);
+            const finalPrice = Math.max(0, grossPrice - discountAmount);
+            
+            getEl('receiptStoreName').textContent = storeInfo.name; getEl('receiptStoreAddress').textContent = storeInfo.address;
+            getEl('receiptDate').textContent = new Date().toLocaleString('hi-IN'); getEl('receiptNumber').textContent = Date.now() % 100000;
+            getEl('receiptItem').textContent = `${product.name} (${weight.toFixed(2)} g)`; getEl('receiptRate').textContent = `₹${product.price}/${product.unit}g`;
+            getEl('receiptGrossPrice').textContent = `₹${grossPrice.toFixed(2)}`; getEl('receiptSubtotal').textContent = `₹${grossPrice.toFixed(2)}`;
+            getEl('receiptDiscount').textContent = `-₹${discountAmount.toFixed(2)}`; getEl('receiptTotal').textContent = `₹${finalPrice.toFixed(2)}`;
+            
+            const receiptEl = getEl('receipt');
+            receiptEl.style.display = 'block';
+            html2canvas(receiptEl, { scale: 4, backgroundColor: '#ffffff' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `receipt-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                receiptEl.style.display = 'none';
+            });
+        }
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file'; input.accept = '.json';
+            input.onchange = e => {
+                const reader = new FileReader();
+                reader.onload = event => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        if (Array.isArray(data) && confirm('मौजूदा प्रोडक्ट्स को इम्पोर्टेड लिस्ट से बदलें?')) {
+                            products = data; saveProducts(); initializeApp();
+                            alert('प्रोडक्ट्स सफलतापूर्वक इम्पोर्ट हुए!');
+                        } else alert('अमान्य फ़ाइल।');
+                    } catch { alert('फ़ाइल पढ़ने में त्रुटि।'); }
+                };
+                reader.readAsText(e.target.files[0]);
+            };
+            input.click();
+        }
+        function exportData() {
+            if (!products.length) return alert("एक्सपोर्ट करने के लिए कोई प्रोडक्ट नहीं है।");
+            const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `products_backup_${new Date().toISOString().slice(0,10)}.json`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // --- ऐप चलाएं ---
+        initializeApp();
+    });
+    </script>
+</body>
+</html>

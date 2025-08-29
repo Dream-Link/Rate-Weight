@@ -1,0 +1,22 @@
+{
+  "name": "Weighing Calculator",
+  "short_name": "WeighCalc",
+  "description": "A smart calculator for weighing and pricing items with offline support.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1a202c",
+  "theme_color": "#2d3748",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192/667eea/ffffff?text=WC",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://placehold.co/512x512/667eea/ffffff?text=WC",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

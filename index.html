@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weighing Calculator</title>
+    <title>Final Weighing Calculator</title>
+
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Theme Color for PWA -->
+    <meta name="theme-color" content="#2d3748">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,7 +129,6 @@
         .settings-menu button i { margin-right: 15px; color: var(--primary-color); }
         .settings-menu button.btn-danger, .settings-menu button.btn-danger i { color: var(--danger-color); }
         
-        /* --- NEW: Print Styles --- */
         @media print {
             body * { visibility: hidden; }
             #receipt-print-area, #receipt-print-area * { visibility: visible; }
@@ -179,6 +183,19 @@
     <div id="receipt-print-area"></div>
 
     <script>
+    // --- Service Worker Registration Script ---
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
     class WeighingApp {
         constructor() {
             this.dom = {
@@ -367,7 +384,7 @@
             if (!product || value === 0) { this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? '₹0.00' : '0 g'; return; }
             const { finalPrice, finalWeight } = this.getCalculationDetails(product, value);
             this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? `₹${finalPrice.toFixed(2)}` : `${finalWeight.toFixed(2)} g`;
-            if (value > 0) { this.addCalculationToHistory({ product: product.name, weight: finalWeight, price: finalPrice, timestamp: new Date() }); }
+            if (value > 0) { this.addCalculationToHistory({ product: product.name, weight: finalWeight, price: finalPrice, timestamp: new Date().toISOString() }); }
         }
         
         populateProductSelect(filteredProducts = null) { 
@@ -489,11 +506,10 @@
         
         addCalculationToHistory(calc) {
             this.calculationHistory.unshift(calc);
-            if (this.calculationHistory.length > 50) { this.calculationHistory.pop(); } // Increased history limit
+            if (this.calculationHistory.length > 50) { this.calculationHistory.pop(); }
             localStorage.setItem('weighingHistory', JSON.stringify(this.calculationHistory));
         }
         
-        // --- MODIFIED: History is now grouped by date ---
         openHistoryModal() {
             const historyListEl = document.getElementById('historyList');
             if (this.calculationHistory.length === 0) {
@@ -504,10 +520,8 @@
 
             const groupedHistory = this.calculationHistory.reduce((acc, item) => {
                 const date = new Date(item.timestamp);
-                const dateKey = date.toLocaleDateString('hi-IN', { year: 'numeric', month: 'long', day: 'numeric' });
-                if (!acc[dateKey]) {
-                    acc[dateKey] = [];
-                }
+                const dateKey = date.toLocaleDateString(this.currentLang === 'hi' ? 'hi-IN' : 'en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+                if (!acc[dateKey]) { acc[dateKey] = []; }
                 acc[dateKey].push(item);
                 return acc;
             }, {});
@@ -563,7 +577,6 @@
             return text;
         }
         
-        // --- MODIFIED: Print function now uses a dedicated print area ---
         printCart() {
             const receiptEl = document.getElementById('receipt-print-area');
             receiptEl.innerHTML = this.getReceiptText().replace(/\n/g, '<br>');
@@ -582,7 +595,6 @@
             this.updateLanguage();
         }
 
-        // --- NEW: Reset function with 3 warnings ---
         resetApplication() {
             if (confirm("चेतावनी 1/3: क्या आप वाकई ऐप को रीसेट करना चाहते हैं? आपका सारा डेटा (उत्पाद, स्टोर जानकारी, हिस्ट्री) हमेशा के लिए डिलीट हो जाएगा।")) {
                 if (confirm("चेतावनी 2/3: यह क्रिया वापस नहीं ली जा सकती। क्या आप निश्चित हैं?")) {

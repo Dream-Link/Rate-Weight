@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Weighing Calculator</title>
+    <title>Weighing Calculator</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,32 +109,30 @@
         .modal-footer { padding: 15px 25px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; justify-content: flex-end; }
         .history-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
         .history-item:last-child { border-bottom: none; }
+        .history-date-header { margin-top: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--primary-color); color: var(--primary-color); }
+        .history-date-header:first-child { margin-top: 0; }
         .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); color: white; padding: 16px; border-radius: 8px; z-index: 2000; transition: bottom 0.5s ease; box-shadow: var(--shadow); }
         .toast.show { bottom: 30px; }
-        .numpad { display: none; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
-        @media (max-width: 500px) { .numpad { display: grid; } }
-        .numpad-btn { padding: 20px; font-size: 1.5rem; background-color: var(--border-color); color: var(--text-color); border: none; border-radius: 12px; cursor: pointer; }
-
-        /* --- NEW: Settings Menu Styles --- */
+        
         .settings-menu { list-style: none; padding: 0; margin: 0; }
         .settings-menu button {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            padding: 15px;
-            text-align: left;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            border-radius: 12px;
-            transition: background-color 0.2s ease;
+            width: 100%; background: transparent; border: none; color: var(--text-color); padding: 15px;
+            text-align: left; font-size: 1rem; font-family: 'Poppins', sans-serif; cursor: pointer;
+            display: flex; align-items: center; border-radius: 12px; transition: background-color 0.2s ease;
         }
         .settings-menu button:hover { background-color: var(--border-color); }
         .settings-menu button i { margin-right: 15px; color: var(--primary-color); }
-
+        .settings-menu button.btn-danger, .settings-menu button.btn-danger i { color: var(--danger-color); }
+        
+        /* --- NEW: Print Styles --- */
+        @media print {
+            body * { visibility: hidden; }
+            #receipt-print-area, #receipt-print-area * { visibility: visible; }
+            #receipt-print-area { 
+                position: absolute; left: 0; top: 0; width: 100%; 
+                color: #000; font-family: 'Courier New', monospace;
+            }
+        }
     </style>
 </head>
 <body class="theme-default-dark">
@@ -149,7 +147,7 @@
             <div class="display-area" id="displayArea">
                 <button id="resetBtn" class="icon-btn"><i class="material-icons-round">restart_alt</i></button>
                 <label id="inputLabel" data-key="inputLabelWeight">वज़न (ग्राम में)</label>
-                <input type="text" id="mainInput" inputmode="decimal" placeholder="0" readonly>
+                <input type="text" id="mainInput" inputmode="decimal" placeholder="0">
             </div>
             <div class="controls">
                 <input type="search" id="productSearch" placeholder="उत्पाद खोजें..." data-key="productSearchPlaceholder">
@@ -166,24 +164,6 @@
                 <button id="breakdownBtn" class="btn btn-secondary" data-key="viewBreakdown">विवरण देखें</button>
                 <button id="addToTotalBtn" class="btn btn-primary" data-key="addToTotal">टोटल में जोड़ें</button>
             </div>
-            <div class="numpad" id="numpad">
-                <button class="numpad-btn" data-key="7">7</button>
-                <button class="numpad-btn" data-key="8">8</button>
-                <button class="numpad-btn" data-key="9">9</button>
-                <button class="numpad-btn" data-key="C">C</button>
-                <button class="numpad-btn" data-key="4">4</button>
-                <button class="numpad-btn" data-key="5">5</button>
-                <button class="numpad-btn" data-key="6">6</button>
-                <button class="numpad-btn" data-key="backspace"><i class="material-icons-round">backspace</i></button>
-                <button class="numpad-btn" data-key="1">1</button>
-                <button class="numpad-btn" data-key="2">2</button>
-                <button class="numpad-btn" data-key="3">3</button>
-                <button class="numpad-btn" data-key="tare">Tare</button>
-                <button class="numpad-btn" data-key="0">0</button>
-                <button class="numpad-btn" data-key=".">.</button>
-                <button class="numpad-btn" data-key="00">00</button>
-                 <button class="numpad-btn" data-key="OK">OK</button>
-            </div>
         </div>
     </div>
     
@@ -194,8 +174,9 @@
     <div id="storeInfoModal" class="modal"></div>
     <div id="historyModal" class="modal"></div>
     <div id="cartModal" class="modal"></div>
-    <div id="settingsModal" class="modal"></div> <div id="toast" class="toast"></div>
-    <div id="receipt" style="position: absolute; left: -9999px; top: -9999px; font-family: monospace; color: black;"></div>
+    <div id="settingsModal" class="modal"></div>
+    <div id="toast" class="toast"></div>
+    <div id="receipt-print-area"></div>
 
     <script>
     class WeighingApp {
@@ -205,7 +186,7 @@
                 storeNameEl: document.getElementById('storeName'), productSelect: document.getElementById('productSelect'),
                 priceDisplay: document.getElementById('priceDisplay'), inputLabel: document.getElementById('inputLabel'),
                 resultLabel: document.getElementById('resultLabel'), body: document.body, productSearch: document.getElementById('productSearch'),
-                numpad: document.getElementById('numpad'), toast: document.getElementById('toast'),
+                toast: document.getElementById('toast'),
                 modals: { product: document.getElementById('productModal'), manage: document.getElementById('manageModal'), breakdown: document.getElementById('breakdownModal'), theme: document.getElementById('themeModal'), store: document.getElementById('storeInfoModal'), history: document.getElementById('historyModal'), cart: document.getElementById('cartModal'), settings: document.getElementById('settingsModal') }
             };
             this.products = []; this.storeInfo = {}; this.currentMode = 'weightToPrice'; this.nextProductId = 1;
@@ -227,7 +208,8 @@
                     calculationHistory: 'गणना हिस्ट्री', cart: 'कुल योग', grandTotal: 'ग्रैंड टोटल',
                     product: 'प्रोडक्ट', rate: 'भाव', weight: 'वज़न', grossPrice: 'बिना कमीशन के', total: 'कुल कीमत',
                     settings: 'सेटिंग्स', changeLang: 'भाषा बदलें (English)',
-                    history: 'हिस्ट्री', import: 'इम्पोर्ट', export: 'एक्सपोर्ट', manage: 'मैनेज करें', theme: 'थीम'
+                    history: 'हिस्ट्री', import: 'इम्पोर्ट', export: 'एक्सपोर्ट', manage: 'मैनेज करें', theme: 'थीम',
+                    resetApp: 'एप्लीकेशन रीसेट करें'
                 },
                 en: {
                     inputLabelWeight: 'Weight (in grams)', resultLabelPrice: 'Total Price',
@@ -244,7 +226,8 @@
                     calculationHistory: 'Calculation History', cart: 'Shopping Cart', grandTotal: 'Grand Total',
                     product: 'Product', rate: 'Rate', weight: 'Weight', grossPrice: 'Gross Price', total: 'Total Price',
                     settings: 'Settings', changeLang: 'Change Language (हिन्दी)',
-                    history: 'History', import: 'Import', export: 'Export', manage: 'Manage', theme: 'Theme'
+                    history: 'History', import: 'Import', export: 'Export', manage: 'Manage', theme: 'Theme',
+                    resetApp: 'Reset Application'
                 }
             };
 
@@ -267,7 +250,7 @@
                     else { el.textContent = this.translations[this.currentLang][key]; }
                 }
             });
-            this.injectModalHTML(); // Re-inject modals to update their language
+            this.injectModalHTML();
         }
 
         attachEventListeners() {
@@ -281,15 +264,9 @@
             this.dom.mainInput.addEventListener('input', () => this.calculate());
             this.dom.productSelect.addEventListener('change', () => this.calculate());
             this.dom.productSearch.addEventListener('input', (e) => this.filterProducts(e.target.value));
-
-            this.dom.numpad.addEventListener('click', (e) => {
-                const key = e.target.closest('.numpad-btn')?.dataset.key;
-                if (key) this.handleNumpad(key);
-            });
             
             Object.values(this.dom.modals).forEach(modal => { modal.addEventListener('click', e => { if (e.target.classList.contains('close-btn') || e.target === modal) this.closeModal(modal); }); });
             
-            // --- NEW: Event Delegation for Settings Modal ---
             this.dom.modals.settings.addEventListener('click', (e) => {
                 const action = e.target.closest('button')?.dataset.action;
                 if (!action) return;
@@ -302,6 +279,7 @@
                     addProduct: () => this.openAddProductModal(),
                     manage: () => this.openManageModal(),
                     theme: () => this.openThemeModal(),
+                    resetApp: () => this.resetApplication(),
                 };
 
                 if (actions[action]) {
@@ -317,19 +295,6 @@
             setTimeout(() => { this.dom.toast.classList.remove('show'); }, duration);
         }
 
-        handleNumpad(key) {
-            let currentValue = this.dom.mainInput.value.replace(/,/g, '');
-            if (key === 'C') { currentValue = ''; } 
-            else if (key === 'backspace') { currentValue = currentValue.slice(0, -1); } 
-            else if (key === 'tare') { this.resetInput(); } 
-            else if (key === 'OK') { this.addToCart(); } 
-            else { currentValue += key; }
-            const parts = currentValue.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            this.dom.mainInput.value = parts.join('.');
-            this.calculate();
-        }
-
         injectModalHTML() {
             const t = (key) => this.translations[this.currentLang][key] || key;
             const createModalContent = (title, body, footer = '') => `<div class="modal-content"><div class="modal-header"><h2>${title}</h2><span class="close-btn">&times;</span></div><div class="modal-body">${body}</div>${footer ? `<div class="modal-footer">${footer}</div>` : ''}</div>`;
@@ -342,7 +307,6 @@
             this.dom.modals.history.innerHTML = createModalContent(t('calculationHistory'), '<div id="historyList"></div>');
             this.dom.modals.cart.innerHTML = createModalContent(t('cart'), '<div id="cartDetails"></div>', '<button id="clearCartBtn" class="btn btn-secondary">Clear</button><button id="shareCartBtn" class="btn btn-secondary">Share</button><button id="printCartBtn" class="btn btn-primary">Print</button>');
             
-            // --- NEW: Inject Settings Modal Content ---
             const settingsMenuHTML = `
                 <ul class="settings-menu">
                     <li><button data-action="history"><i class="material-icons-round">history</i> ${t('history')}</button></li>
@@ -352,6 +316,7 @@
                     <li><button data-action="addProduct"><i class="material-icons-round">add_circle</i> ${t('addProduct')}</button></li>
                     <li><button data-action="manage"><i class="material-icons-round">inventory</i> ${t('manageProducts')}</button></li>
                     <li><button data-action="theme"><i class="material-icons-round">palette</i> ${t('theme')}</button></li>
+                    <li><button data-action="resetApp" class="btn-danger"><i class="material-icons-round">dangerous</i> ${t('resetApp')}</button></li>
                 </ul>`;
             this.dom.modals.settings.innerHTML = createModalContent(t('settings'), settingsMenuHTML);
 
@@ -397,8 +362,8 @@
         }
 
         calculate() {
-            const product = this.products.find(p => p.id == this.dom.productSelect.value);
             const value = parseFloat(this.dom.mainInput.value.replace(/,/g, '')) || 0;
+            const product = this.products.find(p => p.id == this.dom.productSelect.value);
             if (!product || value === 0) { this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? '₹0.00' : '0 g'; return; }
             const { finalPrice, finalWeight } = this.getCalculationDetails(product, value);
             this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? `₹${finalPrice.toFixed(2)}` : `${finalWeight.toFixed(2)} g`;
@@ -524,15 +489,40 @@
         
         addCalculationToHistory(calc) {
             this.calculationHistory.unshift(calc);
-            if (this.calculationHistory.length > 20) { this.calculationHistory.pop(); }
+            if (this.calculationHistory.length > 50) { this.calculationHistory.pop(); } // Increased history limit
             localStorage.setItem('weighingHistory', JSON.stringify(this.calculationHistory));
         }
         
+        // --- MODIFIED: History is now grouped by date ---
         openHistoryModal() {
             const historyListEl = document.getElementById('historyList');
-            if (this.calculationHistory.length > 0) {
-                historyListEl.innerHTML = this.calculationHistory.map(item => `<div class="history-item"><span>${item.product} - ${Number(item.weight).toFixed(2)}g</span><span>₹${Number(item.price).toFixed(2)}</span></div>`).join('');
-            } else { historyListEl.innerHTML = `<p>No history yet.</p>`; }
+            if (this.calculationHistory.length === 0) {
+                historyListEl.innerHTML = `<p>No history yet.</p>`;
+                this.openModal(this.dom.modals.history);
+                return;
+            }
+
+            const groupedHistory = this.calculationHistory.reduce((acc, item) => {
+                const date = new Date(item.timestamp);
+                const dateKey = date.toLocaleDateString('hi-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+                if (!acc[dateKey]) {
+                    acc[dateKey] = [];
+                }
+                acc[dateKey].push(item);
+                return acc;
+            }, {});
+
+            let html = '';
+            for (const dateKey in groupedHistory) {
+                html += `<h4 class="history-date-header">${dateKey}</h4>`;
+                html += groupedHistory[dateKey].map(item => 
+                    `<div class="history-item">
+                        <span>${item.product} - ${Number(item.weight).toFixed(2)}g</span>
+                        <span>₹${Number(item.price).toFixed(2)}</span>
+                    </div>`
+                ).join('');
+            }
+            historyListEl.innerHTML = html;
             this.openModal(this.dom.modals.history);
         }
 
@@ -573,8 +563,9 @@
             return text;
         }
         
+        // --- MODIFIED: Print function now uses a dedicated print area ---
         printCart() {
-            const receiptEl = document.getElementById('receipt');
+            const receiptEl = document.getElementById('receipt-print-area');
             receiptEl.innerHTML = this.getReceiptText().replace(/\n/g, '<br>');
             window.print();
         }
@@ -589,6 +580,23 @@
             document.documentElement.lang = this.currentLang;
             localStorage.setItem('weighingLang', this.currentLang);
             this.updateLanguage();
+        }
+
+        // --- NEW: Reset function with 3 warnings ---
+        resetApplication() {
+            if (confirm("चेतावनी 1/3: क्या आप वाकई ऐप को रीसेट करना चाहते हैं? आपका सारा डेटा (उत्पाद, स्टोर जानकारी, हिस्ट्री) हमेशा के लिए डिलीट हो जाएगा।")) {
+                if (confirm("चेतावनी 2/3: यह क्रिया वापस नहीं ली जा सकती। क्या आप निश्चित हैं?")) {
+                    if (confirm("चेतावनी 3/3: यह अंतिम पुष्टि है। रीसेट करने के लिए 'OK' दबाएं।")) {
+                        localStorage.removeItem('weighingProducts');
+                        localStorage.removeItem('storeInfo');
+                        localStorage.removeItem('weighingHistory');
+                        localStorage.removeItem('weighingTheme');
+                        localStorage.removeItem('weighingLang');
+                        alert("एप्लीकेशन सफलतापूर्वक रीसेट हो गया है। पेज अब रीलोड होगा।");
+                        location.reload();
+                    }
+                }
+            }
         }
 
         importData() {

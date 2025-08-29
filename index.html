@@ -20,8 +20,7 @@
             --rounded-radius: 16px; --transition-duration: 0.2s ease-in-out;
         }
         
-        /* --- 30+ Themes --- */
-        /* Dark Themes */
+        /* --- Themes (unchanged) --- */
         .theme-default-dark { --bg-color: #1a202c; --container-bg: #2d3748; --primary-color: #667eea; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568; }
         .theme-ocean { --bg-color: #172c3f; --container-bg: #1e3b58; --primary-color: #2ac9ff; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568; }
         .theme-sunset { --bg-color: #4a148c; --container-bg: #6a1b9a; --primary-color: #ff8a5c; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: #7b1fa2; }
@@ -33,27 +32,19 @@
         .theme-sand { --bg-color: #3e2723; --container-bg: #4e342e; --primary-color: #a1887f; --text-color: #f7fafc; --secondary-text-color: #efebe9; --border-color: #5d4037; }
         .theme-charcoal { --bg-color: #263238; --container-bg: #37474f; --primary-color: #90a4ae; --text-color: #f7fafc; --secondary-text-color: #eceff1; --border-color: #455a64; }
         .theme-wine { --bg-color: #880e4f; --container-bg: #ad1457; --primary-color: #ec407a; --text-color: #f7fafc; --secondary-text-color: #fce4ec; --border-color: #c2185b; }
-
-        /* Light Themes */
         .theme-light-default { background: #f4f7fc; --container-bg: #ffffff; --primary-color: #6a5af9; --text-color: #343d4f; --secondary-text-color: #6e7a8e; --border-color: #e6e9f0; }
         .theme-light-blue { background: #e3f2fd; --container-bg: #fff; --primary-color: #1976d2; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
         .theme-light-green { background: #e8f5e9; --container-bg: #fff; --primary-color: #388e3c; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
         .theme-light-orange { background: #fff3e0; --container-bg: #fff; --primary-color: #f57c00; --text-color: #212121; --secondary-text-color: #757575; --border-color: #e0e0e0; }
-        
-        /* Gradient Themes */
         .theme-deep-space { background: linear-gradient(135deg, #000000, #434343); --container-bg: rgba(0,0,0,0.2); --primary-color: #74ebd5; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
         .theme-mango-dream { background: linear-gradient(135deg, #f2994a, #f2c94c); --container-bg: rgba(255,255,255,0.8); --primary-color: #d85d11; --text-color: #333; --secondary-text-color: #555; --border-color: rgba(0,0,0,0.1); }
         .theme-pinky-promise { background: linear-gradient(135deg, #ffdde1, #ee9ca7); --container-bg: rgba(255,255,255,0.8); --primary-color: #c43c54; --text-color: #444; --secondary-text-color: #666; --border-color: rgba(0,0,0,0.1); }
         .theme-royal-purple { background: linear-gradient(135deg, #5f2c82, #49a09d); --container-bg: rgba(0,0,0,0.2); --primary-color: #a770ef; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
         .theme-bloody-mary { background: linear-gradient(135deg, #ff512f, #dd2476); --container-bg: rgba(0,0,0,0.2); --primary-color: #fff0f5; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
-
-        /* Animated Gradients */
         @keyframes animatedGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .theme-aurora { background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 15s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
         .theme-liquid-metal { background: linear-gradient(-45deg, #d7d2cc, #304352, #d7d2cc, #304352); background-size: 400% 400%; animation: animatedGradient 10s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
         .theme-synthwave { background: linear-gradient(-45deg, #f02fc2, #6094ea, #23a6d5, #23d5ab); background-size: 400% 400%; animation: animatedGradient 18s ease infinite; --container-bg: rgba(0,0,0,0.2); --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: rgba(255,255,255,0.3); }
-        
-        /* 3D Textures */
         .theme-carbon-fiber { background-color: #222; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="28" height="49" viewBox="0 0 28 49"%3E%3Cg fill-rule="evenodd"%3E%3Cg id="hexagons" fill="%23333" fill-opacity="0.4" fill-rule="nonzero"%3E%3Cpath d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.99-7.5L26 15v18.5l-13 7.5L0 33.5V15z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); --container-bg: #1a1a1a; --primary-color: #08f7fe; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #444;}
         .theme-blueprint { background-color: #2a4365; background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cpath d="M0 50V0h50a50 50 0 0 1 0 100H0" fill="none" stroke="%233a5378" stroke-width="2"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23p)"/%3E%3C/svg%3E'); --container-bg: #1a365d; --primary-color: #fff; --text-color: #f7fafc; --secondary-text-color: #a0aec0; --border-color: #4a5568;}
         .theme-wood { background-color: #6B4F35; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"%3E%3Cg fill="%235A422B" fill-opacity="0.4"%3E%3Cpath fill-rule="evenodd" d="M11 0l5 20-5-5-5 5L11 0zm22 21l-5 20 5 5 5-5-5-20zm22 21l5 20-5-5-5 5 5-20zM0 31l5 20-5-5-5 5 5-20zm66 0l5 20-5-5-5 5 5-20zM22 41l-5 20 5 5 5-5-5-20z"/%3E%3C/g%3E%3C/svg%3E'); --container-bg: #4E3629; --primary-color: #D2B48C; --text-color: #f7fafc; --secondary-text-color: #e0e0e0; --border-color: #6d4c41;}
@@ -68,7 +59,7 @@
         .main-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; }
         .header { font-size: 1.5rem; color: var(--primary-color); font-weight: 600; cursor: pointer; }
-        .top-bar-actions { display: flex; gap: 10px; }
+        .top-bar-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
         .icon-btn { background: transparent; border: none; color: var(--secondary-text-color, #6e7a8e); cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--transition-duration); }
         .icon-btn:hover { background-color: var(--primary-color); color: #fff; transform: translateY(-2px); }
         .icon-btn:active { transform: scale(0.9); }
@@ -77,37 +68,73 @@
         .display-area label { display: block; color: var(--secondary-text-color, #6e7a8e); font-size: 0.9rem; margin-bottom: 5px; text-align: left; }
         #mainInput { width: 100%; background: transparent; border: none; font-family: 'Chakra Petch', sans-serif; font-size: 3.5rem; font-weight: 700; text-align: right; outline: none; color: var(--display-text-weight); transition: color 0.4s ease; }
         .display-area.price-mode #mainInput { color: var(--display-text-price); }
-        .controls { display: flex; gap: 15px; align-items: center; margin-bottom: 25px; padding: 10px; background: var(--display-bg, rgba(26, 32, 44, 0.7)); border-radius: var(--rounded-radius); border: 1px solid var(--border-color, #4a5568); backdrop-filter: blur(8px); }
-        .controls select { flex-grow: 1; padding: 14px; border: none; border-radius: 12px; background-color: transparent; color: var(--text-color); font-size: 1rem; outline: none; -webkit-appearance: none; appearance: none; }
+        .controls { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+        .controls .product-selection { display: flex; gap: 15px; }
+        #productSearch { width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 12px; background-color: var(--bg-color); color: var(--text-color); font-size: 1rem; }
+        .controls select { flex-grow: 1; padding: 14px; border: 1px solid var(--border-color); border-radius: 12px; background-color: var(--bg-color); color: var(--text-color); font-size: 1rem; outline: none; -webkit-appearance: none; appearance: none; }
         #interchangeBtn { background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; color: var(--primary-color); }
         .result-area { text-align: center; padding: 20px; background: var(--display-bg, rgba(26, 32, 44, 0.7)); border-radius: var(--rounded-radius); margin-bottom: 25px; border: 1px solid var(--border-color, #4a5568); backdrop-filter: blur(8px); }
         .result-area label { font-size: 1rem; color: var(--secondary-text-color, #6e7a8e); }
         .result-area #priceDisplay { font-size: 3rem; font-weight: 700; color: var(--primary-color); margin-top: 5px; }
-        .action-buttons { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
+        .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: auto; }
         .btn { padding: 16px; font-size: 1rem; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all var(--transition-duration); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         .btn:active { transform: scale(0.96); box-shadow: none; }
         .btn-primary { background: var(--primary-color); color: #fff !important; }
         .btn-secondary { background-color: var(--border-color, #e6e9f0); color: var(--text-color); }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .modal.show { display: flex; opacity: 1; }
-        .modal-content { background-color: var(--container-bg, #ffffff); color: var(--text-color); border-radius: 20px; border: 1px solid var(--border-color, #e6e9f0); box-shadow: var(--shadow); width: 90%; max-width: 500px; transform: scale(0.95); transition: transform 0.3s ease; }
+        .modal-content { background-color: var(--container-bg, #ffffff); color: var(--text-color); border-radius: 20px; border: 1px solid var(--border-color, #e6e9f0); box-shadow: var(--shadow); width: 90%; max-width: 600px; transform: scale(0.95); transition: transform 0.3s ease; }
         .modal.show .modal-content { transform: scale(1); }
         .modal-header { border-bottom: 1px solid var(--border-color, #e6e9f0); padding: 20px 25px 15px; display: flex; justify-content: space-between; align-items: center; }
-        .modal-body { padding: 25px; }
+        .modal-body { padding: 25px; max-height: 70vh; overflow-y: auto; }
         .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; color: var(--secondary-text-color); }
         .form-group input, .form-group select { width: 100%; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 12px; padding: 14px; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
         .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 40%, transparent); }
-        #productList { list-style: none; max-height: 300px; overflow-y: auto; color: var(--text-color); }
-        #productList li { background-color: rgba(0,0,0,0.2); padding: 10px 15px; margin-bottom: 5px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; color: var(--text-color); }
-        body[class*="light"] #productList li { background-color: rgba(0,0,0,0.05); }
+        .manage-table { width: 100%; border-collapse: collapse; }
+        .manage-table th, .manage-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .manage-table th { font-size: 0.9rem; color: var(--secondary-text-color); }
+        .product-actions i { cursor: pointer; margin-left: 10px; }
+        .empty-state { text-align: center; padding: 40px; }
+        .empty-state i { font-size: 4rem; color: var(--secondary-text-color); }
+        .empty-state h3 { margin-top: 1rem; }
         #productSelect option { background: var(--container-bg, #ffffff); color: var(--text-color); }
-        .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 15px; }
-        .theme-option { height: 60px; border-radius: 15px; border: 2px solid var(--border-color, #e6e9f0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: transform 0.15s ease-in-out; cursor: pointer; }
+        .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; }
+        .theme-option { height: 60px; border-radius: 15px; border: 2px solid var(--border-color, #e6e9f0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: transform 0.15s ease-in-out; cursor: pointer; display: flex; flex-direction: column; justify-content: flex-end; padding: 5px; font-size: 10px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .theme-category { grid-column: 1 / -1; margin-top: 20px; margin-bottom: 5px; font-weight: 600; color: var(--primary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
         .pos-style-view { font-family: 'Courier New', monospace; background: var(--container-bg); color: var(--text-color); padding: 20px; border-radius: 12px; font-size: 14px; border: 1px solid var(--border-color); }
         .pos-style-view div { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--border-color); }
-        .pos-style-view div:last-child { border-bottom: none; border-top: 1px solid var(--text-color); margin-top: 5px; padding-top: 10px; font-weight: bold; font-size: 16px; }
+        .pos-style-view div:last-child, .pos-style-view .total { border-bottom: none; border-top: 1px solid var(--text-color); margin-top: 5px; padding-top: 10px; font-weight: bold; font-size: 16px; }
+        .modal-footer { padding: 15px 25px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; justify-content: flex-end; }
+        .history-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+        .history-item:last-child { border-bottom: none; }
+        .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); color: white; padding: 16px; border-radius: 8px; z-index: 2000; transition: bottom 0.5s ease; box-shadow: var(--shadow); }
+        .toast.show { bottom: 30px; }
+        .numpad { display: none; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+        @media (max-width: 500px) { .numpad { display: grid; } }
+        .numpad-btn { padding: 20px; font-size: 1.5rem; background-color: var(--border-color); color: var(--text-color); border: none; border-radius: 12px; cursor: pointer; }
+
+        /* --- NEW: Settings Menu Styles --- */
+        .settings-menu { list-style: none; padding: 0; margin: 0; }
+        .settings-menu button {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            padding: 15px;
+            text-align: left;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 12px;
+            transition: background-color 0.2s ease;
+        }
+        .settings-menu button:hover { background-color: var(--border-color); }
+        .settings-menu button i { margin-right: 15px; color: var(--primary-color); }
+
     </style>
 </head>
 <body class="theme-default-dark">
@@ -115,29 +142,47 @@
         <div class="top-bar">
             <h2 class="header" id="headerBtn"><span id="storeName"></span></h2>
             <div class="top-bar-actions">
-                <button id="importBtn" class="icon-btn" title="Import"><i class="material-icons-round">file_upload</i></button>
-                <button id="exportBtn" class="icon-btn" title="Export"><i class="material-icons-round">file_download</i></button>
-                <button id="addProductBtn" class="icon-btn" title="Add Product"><i class="material-icons-round">add_circle</i></button>
-                <button id="manageProductsBtn" class="icon-btn" title="Manage Products"><i class="material-icons-round">inventory</i></button>
-                <button id="themeBtn" class="icon-btn" title="Change Theme"><i class="material-icons-round">palette</i></button>
+                <button id="settingsBtn" class="icon-btn" title="Settings"><i class="material-icons-round">settings</i></button>
             </div>
         </div>
         <div class="main-content">
             <div class="display-area" id="displayArea">
                 <button id="resetBtn" class="icon-btn"><i class="material-icons-round">restart_alt</i></button>
-                <label id="inputLabel">वज़न (ग्राम में)</label>
-                <input type="text" id="mainInput" inputmode="decimal" placeholder="0" pattern="[0-9]*\.?[0-9]*">
+                <label id="inputLabel" data-key="inputLabelWeight">वज़न (ग्राम में)</label>
+                <input type="text" id="mainInput" inputmode="decimal" placeholder="0" readonly>
             </div>
             <div class="controls">
-                <select id="productSelect"></select>
-                <button id="interchangeBtn" class="icon-btn"><i class="material-icons-round">swap_horiz</i></button>
+                <input type="search" id="productSearch" placeholder="उत्पाद खोजें..." data-key="productSearchPlaceholder">
+                <div class="product-selection">
+                    <select id="productSelect"></select>
+                    <button id="interchangeBtn" class="icon-btn" title="Swap"><i class="material-icons-round">swap_horiz</i></button>
+                </div>
             </div>
             <div class="result-area">
-                <label id="resultLabel">कुल कीमत</label>
+                <label id="resultLabel" data-key="resultLabelPrice">कुल कीमत</label>
                 <div id="priceDisplay">₹0.00</div>
             </div>
             <div class="action-buttons">
-                <button id="breakdownBtn" class="btn btn-secondary">विवरण देखें</button>
+                <button id="breakdownBtn" class="btn btn-secondary" data-key="viewBreakdown">विवरण देखें</button>
+                <button id="addToTotalBtn" class="btn btn-primary" data-key="addToTotal">टोटल में जोड़ें</button>
+            </div>
+            <div class="numpad" id="numpad">
+                <button class="numpad-btn" data-key="7">7</button>
+                <button class="numpad-btn" data-key="8">8</button>
+                <button class="numpad-btn" data-key="9">9</button>
+                <button class="numpad-btn" data-key="C">C</button>
+                <button class="numpad-btn" data-key="4">4</button>
+                <button class="numpad-btn" data-key="5">5</button>
+                <button class="numpad-btn" data-key="6">6</button>
+                <button class="numpad-btn" data-key="backspace"><i class="material-icons-round">backspace</i></button>
+                <button class="numpad-btn" data-key="1">1</button>
+                <button class="numpad-btn" data-key="2">2</button>
+                <button class="numpad-btn" data-key="3">3</button>
+                <button class="numpad-btn" data-key="tare">Tare</button>
+                <button class="numpad-btn" data-key="0">0</button>
+                <button class="numpad-btn" data-key=".">.</button>
+                <button class="numpad-btn" data-key="00">00</button>
+                 <button class="numpad-btn" data-key="OK">OK</button>
             </div>
         </div>
     </div>
@@ -147,7 +192,10 @@
     <div id="breakdownModal" class="modal"></div>
     <div id="themeModal" class="modal"></div>
     <div id="storeInfoModal" class="modal"></div>
-    <div id="receipt" style="position: absolute; left: -9999px; top: -9999px;"></div>
+    <div id="historyModal" class="modal"></div>
+    <div id="cartModal" class="modal"></div>
+    <div id="settingsModal" class="modal"></div> <div id="toast" class="toast"></div>
+    <div id="receipt" style="position: absolute; left: -9999px; top: -9999px; font-family: monospace; color: black;"></div>
 
     <script>
     class WeighingApp {
@@ -156,74 +204,182 @@
                 mainInput: document.getElementById('mainInput'), displayArea: document.getElementById('displayArea'),
                 storeNameEl: document.getElementById('storeName'), productSelect: document.getElementById('productSelect'),
                 priceDisplay: document.getElementById('priceDisplay'), inputLabel: document.getElementById('inputLabel'),
-                resultLabel: document.getElementById('resultLabel'), body: document.body,
-                modals: { product: document.getElementById('productModal'), manage: document.getElementById('manageModal'), breakdown: document.getElementById('breakdownModal'), theme: document.getElementById('themeModal'), store: document.getElementById('storeInfoModal') }
+                resultLabel: document.getElementById('resultLabel'), body: document.body, productSearch: document.getElementById('productSearch'),
+                numpad: document.getElementById('numpad'), toast: document.getElementById('toast'),
+                modals: { product: document.getElementById('productModal'), manage: document.getElementById('manageModal'), breakdown: document.getElementById('breakdownModal'), theme: document.getElementById('themeModal'), store: document.getElementById('storeInfoModal'), history: document.getElementById('historyModal'), cart: document.getElementById('cartModal'), settings: document.getElementById('settingsModal') }
             };
             this.products = []; this.storeInfo = {}; this.currentMode = 'weightToPrice'; this.nextProductId = 1;
+            this.calculationHistory = []; this.cart = []; this.currentLang = 'hi';
+            
+            this.translations = {
+                hi: {
+                    inputLabelWeight: 'वज़न (ग्राम में)', resultLabelPrice: 'कुल कीमत',
+                    inputLabelPrice: 'कीमत (₹ में)', resultLabelWeight: 'कुल वज़न (ग्राम)',
+                    viewBreakdown: 'विवरण देखें', addToTotal: 'टोटल में जोड़ें',
+                    productSearchPlaceholder: 'उत्पाद खोजें...', addProduct: 'नया प्रोडक्ट जोड़ें',
+                    editProduct: 'प्रोडक्ट एडिट करें', save: 'सेव करें',
+                    productName: 'प्रोडक्ट का नाम', price: 'मूल्य (₹)',
+                    weightUnit: 'वज़न यूनिट', commission: 'कमीशन (वैकल्पिक)',
+                    per100g: 'प्रति 100g', per200g: 'प्रति 200g', per500g: 'प्रति 500g', per1kg: 'प्रति 1kg',
+                    storeInfo: 'स्टोर की जानकारी', storeName: 'स्टोर/दुकान का नाम', address: 'पता',
+                    manageProducts: 'प्रोडक्ट मैनेज करें', productSaved: 'प्रोडक्ट सफलतापूर्वक सेव हुआ!',
+                    calculationDetails: 'गणना का विवरण', themeSelect: 'थीम चुनें',
+                    calculationHistory: 'गणना हिस्ट्री', cart: 'कुल योग', grandTotal: 'ग्रैंड टोटल',
+                    product: 'प्रोडक्ट', rate: 'भाव', weight: 'वज़न', grossPrice: 'बिना कमीशन के', total: 'कुल कीमत',
+                    settings: 'सेटिंग्स', changeLang: 'भाषा बदलें (English)',
+                    history: 'हिस्ट्री', import: 'इम्पोर्ट', export: 'एक्सपोर्ट', manage: 'मैनेज करें', theme: 'थीम'
+                },
+                en: {
+                    inputLabelWeight: 'Weight (in grams)', resultLabelPrice: 'Total Price',
+                    inputLabelPrice: 'Price (in ₹)', resultLabelWeight: 'Total Weight (grams)',
+                    viewBreakdown: 'View Breakdown', addToTotal: 'Add to Total',
+                    productSearchPlaceholder: 'Search products...', addProduct: 'Add New Product',
+                    editProduct: 'Edit Product', save: 'Save',
+                    productName: 'Product Name', price: 'Price (₹)',
+                    weightUnit: 'Weight Unit', commission: 'Commission (optional)',
+                    per100g: 'per 100g', per200g: 'per 200g', per500g: 'per 500g', per1kg: 'per 1kg',
+                    storeInfo: 'Store Information', storeName: 'Store/Shop Name', address: 'Address',
+                    manageProducts: 'Manage Products', productSaved: 'Product saved successfully!',
+                    calculationDetails: 'Calculation Details', themeSelect: 'Select Theme',
+                    calculationHistory: 'Calculation History', cart: 'Shopping Cart', grandTotal: 'Grand Total',
+                    product: 'Product', rate: 'Rate', weight: 'Weight', grossPrice: 'Gross Price', total: 'Total Price',
+                    settings: 'Settings', changeLang: 'Change Language (हिन्दी)',
+                    history: 'History', import: 'Import', export: 'Export', manage: 'Manage', theme: 'Theme'
+                }
+            };
+
             this.themes = {
-                'Default Dark': { class: 'theme-default-dark', color: '#2d3748' }, 'Ocean': { class: 'theme-ocean', color: '#1e3b58' },
-                'Sunset': { class: 'theme-sunset', color: '#6a1b9a' }, 'Forest': { class: 'theme-forest', color: '#388e3c' },
-                'Rose': { class: 'theme-rose', color: '#880e4f' }, 'Sky': { class: 'theme-sky', color: '#0277bd' },
-                'Mint': { class: 'theme-mint', color: '#00695c' }, 'Lavender': { class: 'theme-lavender', color: '#4527a0' },
-                'Sand': { class: 'theme-sand', color: '#4e342e' }, 'Charcoal': { class: 'theme-charcoal', color: '#37474f' },
-                'Wine': { class: 'theme-wine', color: '#ad1457' }, 'Light Default': { class: '', color: '#6a5af9' },
-                'Light Blue': { class: 'theme-light-blue', color: '#1976d2' },
-                'Light Green': { class: 'theme-light-green', color: '#388e3c' }, 'Light Orange': { class: 'theme-light-orange', color: '#f57c00' },
-                'Deep Space (Grad)': { class: 'theme-deep-space', color: 'linear-gradient(135deg, #000, #434343)' },
-                'Mango Dream (Grad)': { class: 'theme-mango-dream', color: 'linear-gradient(135deg, #f2994a, #f2c94c)' },
-                'Pinky Promise (Grad)': { class: 'theme-pinky-promise', color: 'linear-gradient(135deg, #ffdde1, #ee9ca7)' },
-                'Royal Purple (Grad)': { class: 'theme-royal-purple', color: 'linear-gradient(135deg, #5f2c82, #49a09d)' },
-                'Bloody Mary (Grad)': { class: 'theme-bloody-mary', color: 'linear-gradient(135deg, #ff512f, #dd2476)' },
-                'Aurora (Anim)': { class: 'theme-aurora', color: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)' },
-                'Liquid Metal (Anim)': { class: 'theme-liquid-metal', color: 'linear-gradient(-45deg, #d7d2cc, #304352)' },
-                'Synthwave (Anim)': { class: 'theme-synthwave', color: 'linear-gradient(-45deg, #f02fc2, #6094ea)' },
-                'Carbon Fiber (3D)': { class: 'theme-carbon-fiber', color: '#1a1a1a' },
-                'Blueprint (3D)': { class: 'theme-blueprint', color: '#1a365d' },
-                'Wood (3D)': { class: 'theme-wood', color: '#4E3629' }
+                'Dark': { 'Default Dark': { class: 'theme-default-dark', color: '#2d3748' }, 'Ocean': { class: 'theme-ocean', color: '#1e3b58' }, 'Sunset': { class: 'theme-sunset', color: '#6a1b9a' }, 'Forest': { class: 'theme-forest', color: '#388e3c' },},
+                'Light': { 'Light Default': { class: 'theme-light-default', color: '#f4f7fc' }, 'Light Blue': { class: 'theme-light-blue', color: '#e3f2fd' },},
+                'Gradient': { 'Deep Space': { class: 'theme-deep-space', color: 'linear-gradient(135deg, #000, #434343)' },'Royal Purple': { class: 'theme-royal-purple', color: 'linear-gradient(135deg, #5f2c82, #49a09d)' },},
+                'Animated': { 'Aurora': { class: 'theme-aurora', color: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)' },}
             };
             this.init();
         }
 
-        init() { this.injectModalHTML(); this.attachEventListeners(); this.loadStoreInfo(); this.loadProducts(); this.populateProductSelect(); this.applyTheme(); this.calculate(); }
+        init() { this.injectModalHTML(); this.attachEventListeners(); this.loadState(); this.populateProductSelect(); this.applyTheme(); this.updateLanguage(); this.calculate(); }
         
+        updateLanguage() {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (this.translations[this.currentLang][key]) {
+                    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = this.translations[this.currentLang][key]; } 
+                    else { el.textContent = this.translations[this.currentLang][key]; }
+                }
+            });
+            this.injectModalHTML(); // Re-inject modals to update their language
+        }
+
         attachEventListeners() {
             document.getElementById('headerBtn').addEventListener('click', () => this.openStoreInfoModal());
-            document.getElementById('addProductBtn').addEventListener('click', () => this.openAddProductModal());
-            document.getElementById('manageProductsBtn').addEventListener('click', () => this.openManageModal());
-            document.getElementById('themeBtn').addEventListener('click', () => this.openThemeModal());
-            document.getElementById('importBtn').addEventListener('click', () => this.importData());
-            document.getElementById('exportBtn').addEventListener('click', () => this.exportData());
+            document.getElementById('settingsBtn').addEventListener('click', () => this.openModal(this.dom.modals.settings));
             document.getElementById('resetBtn').addEventListener('click', () => this.resetInput());
             document.getElementById('interchangeBtn').addEventListener('click', () => this.toggleMode());
             document.getElementById('breakdownBtn').addEventListener('click', () => this.showBreakdown());
+            document.getElementById('addToTotalBtn').addEventListener('click', () => this.addToCart());
+            
             this.dom.mainInput.addEventListener('input', () => this.calculate());
             this.dom.productSelect.addEventListener('change', () => this.calculate());
+            this.dom.productSearch.addEventListener('input', (e) => this.filterProducts(e.target.value));
+
+            this.dom.numpad.addEventListener('click', (e) => {
+                const key = e.target.closest('.numpad-btn')?.dataset.key;
+                if (key) this.handleNumpad(key);
+            });
+            
             Object.values(this.dom.modals).forEach(modal => { modal.addEventListener('click', e => { if (e.target.classList.contains('close-btn') || e.target === modal) this.closeModal(modal); }); });
+            
+            // --- NEW: Event Delegation for Settings Modal ---
+            this.dom.modals.settings.addEventListener('click', (e) => {
+                const action = e.target.closest('button')?.dataset.action;
+                if (!action) return;
+
+                const actions = {
+                    history: () => this.openHistoryModal(),
+                    language: () => this.toggleLanguage(),
+                    import: () => this.importData(),
+                    export: () => this.exportData(),
+                    addProduct: () => this.openAddProductModal(),
+                    manage: () => this.openManageModal(),
+                    theme: () => this.openThemeModal(),
+                };
+
+                if (actions[action]) {
+                    this.closeModal(this.dom.modals.settings);
+                    actions[action]();
+                }
+            });
+        }
+
+        showToast(message, duration = 3000) {
+            this.dom.toast.textContent = message;
+            this.dom.toast.classList.add('show');
+            setTimeout(() => { this.dom.toast.classList.remove('show'); }, duration);
+        }
+
+        handleNumpad(key) {
+            let currentValue = this.dom.mainInput.value.replace(/,/g, '');
+            if (key === 'C') { currentValue = ''; } 
+            else if (key === 'backspace') { currentValue = currentValue.slice(0, -1); } 
+            else if (key === 'tare') { this.resetInput(); } 
+            else if (key === 'OK') { this.addToCart(); } 
+            else { currentValue += key; }
+            const parts = currentValue.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            this.dom.mainInput.value = parts.join('.');
+            this.calculate();
         }
 
         injectModalHTML() {
-            const createModalContent = (title, body) => `<div class="modal-content"><div class="modal-header"><h2>${title}</h2><span class="close-btn">&times;</span></div><div class="modal-body">${body}</div></div>`;
-            this.dom.modals.product.innerHTML = createModalContent('प्रोडक्ट की जानकारी', `<form id="productForm"><input type="hidden" id="productId"><div class="form-group"><label>प्रोडक्ट का नाम</label><input type="text" id="productName" required></div><div class="form-group"><label>मूल्य (₹)</label><input type="number" id="productPrice" required></div><div class="form-group"><label>वज़न यूनिट</label><select id="productUnit"><option value="100">प्रति 100g</option><option value="200">प्रति 200g</option><option value="500">प्रति 500g</option><option value="1000" selected>प्रति 1kg</option></select></div><div class="form-group"><label>कमीशन (वैकल्पिक)</label><div class="discount-group"><input type="number" id="productCommission" placeholder="0"><select id="commissionType"><option value="percent">%</option><option value="manual">₹</option></select></div></div><button type="submit" class="btn btn-primary" style="width:100%;">सेव करें</button></form>`);
-            this.dom.modals.manage.innerHTML = createModalContent('प्रोडक्ट मैनेज करें', '<ul id="productList"></ul>');
-            this.dom.modals.breakdown.innerHTML = createModalContent('गणना का विवरण', '<div id="breakdownDetails"></div>');
-            this.dom.modals.theme.innerHTML = createModalContent('थीम चुनें', '<div id="themeGrid" class="theme-grid"></div>');
-            this.dom.modals.store.innerHTML = createModalContent('स्टोर की जानकारी', `<form id="storeInfoForm"><div class="form-group"><label>स्टोर/दुकान का नाम</label><input type="text" id="inputStoreName" required></div><div class="form-group"><label>पता</label><input type="text" id="inputStoreAddress"></div><button type="submit" class="btn btn-primary" style="width:100%;">सेव करें</button></form>`);
-            document.getElementById('productForm').addEventListener('submit', (e) => this.handleFormSubmit(e));
-            document.getElementById('storeInfoForm').addEventListener('submit', (e) => this.handleStoreInfoSubmit(e));
-            document.getElementById('productList').addEventListener('click', (e) => this.handleProductListActions(e));
+            const t = (key) => this.translations[this.currentLang][key] || key;
+            const createModalContent = (title, body, footer = '') => `<div class="modal-content"><div class="modal-header"><h2>${title}</h2><span class="close-btn">&times;</span></div><div class="modal-body">${body}</div>${footer ? `<div class="modal-footer">${footer}</div>` : ''}</div>`;
+            
+            this.dom.modals.product.innerHTML = createModalContent(t('addProduct'), `<form id="productForm"><input type="hidden" id="productId"><div class="form-group"><label>${t('productName')}</label><input type="text" id="productName" required></div><div class="form-group"><label>${t('price')}</label><input type="number" id="productPrice" required></div><div class="form-group"><label>${t('weightUnit')}</label><select id="productUnit"><option value="100">${t('per100g')}</option><option value="200">${t('per200g')}</option><option value="500">${t('per500g')}</option><option value="1000" selected>${t('per1kg')}</option></select></div><div class="form-group"><label>${t('commission')}</label><div class="discount-group"><input type="number" id="productCommission" placeholder="0"><select id="commissionType"><option value="percent">%</option><option value="manual">₹</option></select></div></div><button type="submit" class="btn btn-primary" style="width:100%;">${t('save')}</button></form>`);
+            this.dom.modals.manage.innerHTML = createModalContent(t('manageProducts'), '<div id="productListContainer"></div>');
+            this.dom.modals.breakdown.innerHTML = createModalContent(t('calculationDetails'), '<div id="breakdownDetails"></div>');
+            this.dom.modals.theme.innerHTML = createModalContent(t('themeSelect'), '<div id="themeGrid" class="theme-grid"></div>');
+            this.dom.modals.store.innerHTML = createModalContent(t('storeInfo'), `<form id="storeInfoForm"><div class="form-group"><label>${t('storeName')}</label><input type="text" id="inputStoreName" required></div><div class="form-group"><label>${t('address')}</label><input type="text" id="inputStoreAddress"></div><button type="submit" class="btn btn-primary" style="width:100%;">${t('save')}</button></form>`);
+            this.dom.modals.history.innerHTML = createModalContent(t('calculationHistory'), '<div id="historyList"></div>');
+            this.dom.modals.cart.innerHTML = createModalContent(t('cart'), '<div id="cartDetails"></div>', '<button id="clearCartBtn" class="btn btn-secondary">Clear</button><button id="shareCartBtn" class="btn btn-secondary">Share</button><button id="printCartBtn" class="btn btn-primary">Print</button>');
+            
+            // --- NEW: Inject Settings Modal Content ---
+            const settingsMenuHTML = `
+                <ul class="settings-menu">
+                    <li><button data-action="history"><i class="material-icons-round">history</i> ${t('history')}</button></li>
+                    <li><button data-action="language"><i class="material-icons-round">translate</i> ${t('changeLang')}</button></li>
+                    <li><button data-action="import"><i class="material-icons-round">file_upload</i> ${t('import')}</button></li>
+                    <li><button data-action="export"><i class="material-icons-round">file_download</i> ${t('export')}</button></li>
+                    <li><button data-action="addProduct"><i class="material-icons-round">add_circle</i> ${t('addProduct')}</button></li>
+                    <li><button data-action="manage"><i class="material-icons-round">inventory</i> ${t('manageProducts')}</button></li>
+                    <li><button data-action="theme"><i class="material-icons-round">palette</i> ${t('theme')}</button></li>
+                </ul>`;
+            this.dom.modals.settings.innerHTML = createModalContent(t('settings'), settingsMenuHTML);
+
+
+            document.getElementById('productForm')?.addEventListener('submit', (e) => this.handleFormSubmit(e));
+            document.getElementById('storeInfoForm')?.addEventListener('submit', (e) => this.handleStoreInfoSubmit(e));
+            document.getElementById('productListContainer')?.addEventListener('click', (e) => this.handleProductListActions(e));
+            document.getElementById('clearCartBtn')?.addEventListener('click', () => this.clearCart());
+            document.getElementById('printCartBtn')?.addEventListener('click', () => this.printCart());
+            document.getElementById('shareCartBtn')?.addEventListener('click', () => this.shareCart());
         }
 
         applyTheme() { this.dom.body.className = localStorage.getItem('weighingTheme') || 'theme-default-dark'; }
-        loadStoreInfo() { this.storeInfo = JSON.parse(localStorage.getItem('storeInfo')) || { name: 'Smart Weigh', address: 'Jaipur, Rajasthan' }; this.dom.storeNameEl.textContent = this.storeInfo.name; }
-        handleStoreInfoSubmit(e) { e.preventDefault(); this.storeInfo.name = document.getElementById('inputStoreName').value; this.storeInfo.address = document.getElementById('inputStoreAddress').value; localStorage.setItem('storeInfo', JSON.stringify(this.storeInfo)); this.dom.storeNameEl.textContent = this.storeInfo.name; this.closeModal(this.dom.modals.store); }
-        loadProducts() {
+        
+        loadState() {
+            this.storeInfo = JSON.parse(localStorage.getItem('storeInfo')) || { name: 'Smart Weigh', address: 'Jaipur, Rajasthan' };
+            this.dom.storeNameEl.textContent = this.storeInfo.name;
             this.products = JSON.parse(localStorage.getItem('weighingProducts')) || [];
             if (this.products.length === 0) {
                 this.products = [{ id: 1, name: 'Sugar (चीनी)', price: 45, unit: 1000, commission: 5, commissionType: 'percent' }];
                 this.saveProducts();
             }
             this.nextProductId = this.products.length > 0 ? Math.max(...this.products.map(p => p.id)) + 1 : 1;
+            this.calculationHistory = JSON.parse(localStorage.getItem('weighingHistory')) || [];
+            this.currentLang = localStorage.getItem('weighingLang') || 'hi';
         }
+        
+        handleStoreInfoSubmit(e) { e.preventDefault(); this.storeInfo.name = document.getElementById('inputStoreName').value; this.storeInfo.address = document.getElementById('inputStoreAddress').value; localStorage.setItem('storeInfo', JSON.stringify(this.storeInfo)); this.dom.storeNameEl.textContent = this.storeInfo.name; this.closeModal(this.dom.modals.store); }
         saveProducts() { localStorage.setItem('weighingProducts', JSON.stringify(this.products)); }
         openModal(modal) { modal.classList.add('show'); }
         closeModal(modal) { modal.classList.remove('show'); }
@@ -234,22 +390,38 @@
             this.currentMode = (this.currentMode === 'weightToPrice') ? 'priceToWeight' : 'weightToPrice';
             this.dom.displayArea.classList.toggle('price-mode');
             const isWeightMode = this.currentMode === 'weightToPrice';
-            this.dom.inputLabel.textContent = isWeightMode ? 'वज़न (ग्राम में)' : 'कीमत (₹ में)';
-            this.dom.resultLabel.textContent = isWeightMode ? 'कुल कीमत' : 'कुल वज़न (ग्राम)';
+            this.dom.inputLabel.textContent = isWeightMode ? this.translations[this.currentLang].inputLabelWeight : this.translations[this.currentLang].inputLabelPrice;
+            this.dom.resultLabel.textContent = isWeightMode ? this.translations[this.currentLang].resultLabelPrice : this.translations[this.currentLang].resultLabelWeight;
             this.dom.mainInput.value = oldOutputValue > 0 ? oldOutputValue : '';
             this.calculate();
         }
 
         calculate() {
             const product = this.products.find(p => p.id == this.dom.productSelect.value);
-            const value = parseFloat(this.dom.mainInput.value) || 0;
+            const value = parseFloat(this.dom.mainInput.value.replace(/,/g, '')) || 0;
             if (!product || value === 0) { this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? '₹0.00' : '0 g'; return; }
             const { finalPrice, finalWeight } = this.getCalculationDetails(product, value);
             this.dom.priceDisplay.textContent = this.currentMode === 'weightToPrice' ? `₹${finalPrice.toFixed(2)}` : `${finalWeight.toFixed(2)} g`;
+            if (value > 0) { this.addCalculationToHistory({ product: product.name, weight: finalWeight, price: finalPrice, timestamp: new Date() }); }
         }
         
-        populateProductSelect() { const selectedVal = this.dom.productSelect.value; this.dom.productSelect.innerHTML = this.products.map(p => `<option value="${p.id}">${p.name}</option>`).join(''); if (this.products.length === 0) this.dom.productSelect.innerHTML = '<option>प्रोडक्ट जोड़ें</option>'; this.dom.productSelect.value = selectedVal || (this.products.length > 0 ? this.products[0].id : ''); }
-        openAddProductModal() { document.getElementById('productForm').reset(); document.getElementById('productId').value = ''; this.dom.modals.product.querySelector('h2').textContent = 'नया प्रोडक्ट जोड़ें'; this.openModal(this.dom.modals.product); }
+        populateProductSelect(filteredProducts = null) { 
+            const productsToShow = filteredProducts || this.products;
+            const selectedVal = this.dom.productSelect.value; 
+            this.dom.productSelect.innerHTML = productsToShow.map(p => `<option value="${p.id}">${p.name}</option>`).join(''); 
+            if (productsToShow.length === 0) this.dom.productSelect.innerHTML = `<option>${this.translations[this.currentLang].addProduct}</option>`;
+            this.dom.productSelect.value = selectedVal || (productsToShow.length > 0 ? productsToShow[0].id : '');
+        }
+
+        filterProducts(searchTerm) {
+            const lowerCaseTerm = searchTerm.toLowerCase();
+            const filtered = this.products.filter(p => p.name.toLowerCase().includes(lowerCaseTerm));
+            this.populateProductSelect(filtered);
+            this.calculate();
+        }
+
+        openAddProductModal() { document.getElementById('productForm').reset(); document.getElementById('productId').value = ''; this.dom.modals.product.querySelector('h2').textContent = this.translations[this.currentLang].addProduct; this.openModal(this.dom.modals.product); }
+        
         handleFormSubmit(e) {
             e.preventDefault();
             const id = document.getElementById('productId').value;
@@ -261,8 +433,21 @@
                 this.products.push({ id: this.nextProductId++, ...productData });
             }
             this.saveProducts(); this.populateProductSelect(); this.calculate(); this.closeModal(this.dom.modals.product);
+            this.showToast(this.translations[this.currentLang].productSaved);
         }
-        openManageModal() { document.getElementById('productList').innerHTML = this.products.map(p => `<li><span>${p.name} (₹${p.price}/${p.unit}g)</span><span class="product-actions"><i class="material-icons-round edit-btn" data-id="${p.id}">edit</i><i class="material-icons-round delete-btn" data-id="${p.id}">delete</i></span></li>`).join('') || '<li>कोई प्रोडक्ट नहीं मिला।</li>'; this.openModal(this.dom.modals.manage); }
+
+        openManageModal() { 
+            const container = document.getElementById('productListContainer');
+            const t = this.translations[this.currentLang];
+            if (this.products.length > 0) {
+                const headers = [t.productName, t.price, t.weightUnit, t.commission, 'Actions'];
+                container.innerHTML = `<table class="manage-table"><thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${this.products.map(p => `<tr><td>${p.name}</td><td>₹${p.price}</td><td>${p.unit}g</td><td>${p.commission || 0}${p.commissionType === 'percent' ? '%' : '₹'}</td><td class="product-actions"><i class="material-icons-round edit-btn" data-id="${p.id}">edit</i><i class="material-icons-round delete-btn" data-id="${p.id}">delete</i></td></tr>`).join('')}</tbody></table>`;
+            } else {
+                container.innerHTML = `<div class="empty-state"><i class="material-icons-round">production_quantity_limits</i><h3>No Products Found</h3><p>Click the '+' button to add your first product.</p></div>`;
+            }
+            this.openModal(this.dom.modals.manage); 
+        }
+
         handleProductListActions(e) {
             const target = e.target;
             const id = target.dataset.id;
@@ -276,11 +461,11 @@
                 document.getElementById('productUnit').value = productToEdit.unit;
                 document.getElementById('productCommission').value = productToEdit.commission;
                 document.getElementById('commissionType').value = productToEdit.commissionType;
-                this.dom.modals.product.querySelector('h2').textContent = 'प्रोडक्ट एडिट करें';
+                this.dom.modals.product.querySelector('h2').textContent = this.translations[this.currentLang].editProduct;
                 this.closeModal(this.dom.modals.manage);
                 this.openModal(this.dom.modals.product);
             } else if (target.classList.contains('delete-btn')) {
-                if (confirm(`क्या आप वाकई '${productToEdit.name}' को हटाना चाहते हैं?`)) {
+                if (confirm(`Are you sure you want to delete '${productToEdit.name}'?`)) {
                     this.products = this.products.filter(p => p.id != id);
                     this.saveProducts(); this.populateProductSelect(); this.calculate();
                     this.openManageModal();
@@ -303,30 +488,29 @@
                 finalWeight = grossPrice / pricePerGram;
                 commissionAmount = grossPrice - finalPrice;
             }
-            return { finalPrice, finalWeight, grossPrice, commissionAmount };
+            return { finalPrice, finalWeight, grossPrice, commissionAmount, product };
         }
 
         showBreakdown() {
             const product = this.products.find(p => p.id == this.dom.productSelect.value);
-            const value = parseFloat(this.dom.mainInput.value) || 0;
-            if (!product || value === 0) return alert("विवरण देखने के लिए कृपया कोई मान दर्ज करें।");
+            const value = parseFloat(this.dom.mainInput.value.replace(/,/g, '')) || 0;
+            if (!product || value === 0) return;
             const { finalPrice, finalWeight, grossPrice, commissionAmount } = this.getCalculationDetails(product, value);
             const breakdownDetailsEl = document.getElementById('breakdownDetails');
             breakdownDetailsEl.className = 'pos-style-view';
-            breakdownDetailsEl.innerHTML = `
-                <div><span>प्रोडक्ट:</span><span>${product.name}</span></div>
-                <div><span>भाव:</span><span>₹${product.price}/${product.unit}g</span></div>
-                <div><span>कुल वज़न:</span><span>${finalWeight.toFixed(2)} g</span></div>
-                <div><span>बिना कमीशन के:</span><span>₹${grossPrice.toFixed(2)}</span></div>
-                <div><span>कमीशन:</span><span>- ₹${commissionAmount.toFixed(2)}</span></div>
-                <div><span>कुल कीमत:</span><span>₹${finalPrice.toFixed(2)}</span></div>
-            `;
+            const t = (key) => this.translations[this.currentLang][key] || key;
+            breakdownDetailsEl.innerHTML = `<div><span>${t('product')}:</span><span>${product.name}</span></div><div><span>${t('rate')}:</span><span>₹${product.price}/${product.unit}g</span></div><div><span>${t('weight')}:</span><span>${finalWeight.toFixed(2)} g</span></div><div><span>${t('grossPrice')}:</span><span>₹${grossPrice.toFixed(2)}</span></div><div><span>${t('commission')}:</span><span>- ₹${commissionAmount.toFixed(2)}</span></div><div class="total"><span>${t('total')}:</span><span>₹${finalPrice.toFixed(2)}</span></div>`;
             this.openModal(this.dom.modals.breakdown);
         }
         
         openThemeModal() {
             const themeGrid = document.getElementById('themeGrid');
-            themeGrid.innerHTML = Object.entries(this.themes).map(([name, theme]) => `<div class="theme-option" title="${name}" style="background: ${theme.color};" data-themeclass="${theme.class}"></div>`).join('');
+            let html = '';
+            for (const category in this.themes) {
+                html += `<h3 class="theme-category">${category}</h3>`;
+                html += Object.entries(this.themes[category]).map(([name, theme]) => `<div class="theme-option" title="${name}" style="background: ${theme.color};" data-themeclass="${theme.class}">${name}</div>`).join('');
+            }
+            themeGrid.innerHTML = html;
             themeGrid.onclick = (e) => {
                 if(e.target.classList.contains('theme-option')){
                     const themeClass = e.target.dataset.themeclass;
@@ -338,6 +522,75 @@
             this.openModal(this.dom.modals.theme);
         }
         
+        addCalculationToHistory(calc) {
+            this.calculationHistory.unshift(calc);
+            if (this.calculationHistory.length > 20) { this.calculationHistory.pop(); }
+            localStorage.setItem('weighingHistory', JSON.stringify(this.calculationHistory));
+        }
+        
+        openHistoryModal() {
+            const historyListEl = document.getElementById('historyList');
+            if (this.calculationHistory.length > 0) {
+                historyListEl.innerHTML = this.calculationHistory.map(item => `<div class="history-item"><span>${item.product} - ${Number(item.weight).toFixed(2)}g</span><span>₹${Number(item.price).toFixed(2)}</span></div>`).join('');
+            } else { historyListEl.innerHTML = `<p>No history yet.</p>`; }
+            this.openModal(this.dom.modals.history);
+        }
+
+        addToCart() {
+            const product = this.products.find(p => p.id == this.dom.productSelect.value);
+            const value = parseFloat(this.dom.mainInput.value.replace(/,/g, '')) || 0;
+            if (!product || value === 0) return;
+            const details = this.getCalculationDetails(product, value);
+            this.cart.push(details);
+            this.showToast(`${product.name} added to total.`);
+            this.resetInput();
+            this.openCartModal();
+        }
+
+        openCartModal() {
+            const cartDetailsEl = document.getElementById('cartDetails');
+            const t = (key) => this.translations[this.currentLang][key] || key;
+            if (this.cart.length > 0) {
+                let grandTotal = 0;
+                let html = '<div class="pos-style-view">';
+                this.cart.forEach(item => {
+                    grandTotal += item.finalPrice;
+                    html += `<div><span>${item.product.name} (${item.finalWeight.toFixed(2)}g)</span><span>₹${item.finalPrice.toFixed(2)}</span></div>`;
+                });
+                html += `<div class="total"><span>${t('grandTotal')}:</span><span>₹${grandTotal.toFixed(2)}</span></div></div>`;
+                cartDetailsEl.innerHTML = html;
+            } else { cartDetailsEl.innerHTML = `<p>The cart is empty.</p>`; }
+            this.openModal(this.dom.modals.cart);
+        }
+        
+        clearCart() { this.cart = []; this.openCartModal(); }
+
+        getReceiptText() {
+            let text = `${this.storeInfo.name}\n${this.storeInfo.address}\n--------------------\n`;
+            let grandTotal = 0;
+            this.cart.forEach(item => { grandTotal += item.finalPrice; text += `${item.product.name} (${item.finalWeight.toFixed(2)}g) - ₹${item.finalPrice.toFixed(2)}\n`; });
+            text += `--------------------\nGRAND TOTAL: ₹${grandTotal.toFixed(2)}`;
+            return text;
+        }
+        
+        printCart() {
+            const receiptEl = document.getElementById('receipt');
+            receiptEl.innerHTML = this.getReceiptText().replace(/\n/g, '<br>');
+            window.print();
+        }
+        
+        async shareCart() {
+            const shareData = { title: 'Your Receipt', text: this.getReceiptText(), };
+            try { await navigator.share(shareData); } catch (err) { alert('Sharing not supported or cancelled.'); }
+        }
+
+        toggleLanguage() {
+            this.currentLang = this.currentLang === 'hi' ? 'en' : 'hi';
+            document.documentElement.lang = this.currentLang;
+            localStorage.setItem('weighingLang', this.currentLang);
+            this.updateLanguage();
+        }
+
         importData() {
             const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
             input.onchange = e => {
@@ -345,11 +598,11 @@
                 reader.onload = event => {
                     try {
                         const data = JSON.parse(event.target.result);
-                        if (Array.isArray(data) && confirm('मौजूदा प्रोडक्ट्स को इम्पोर्टेड लिस्ट से बदलें?')) {
+                        if (Array.isArray(data) && confirm('Replace current products with imported list?')) {
                             this.products = data; this.saveProducts(); this.init();
-                            alert('प्रोडक्ट्स सफलतापूर्वक इम्पोर्ट हुए!');
-                        } else alert('अमान्य फ़ाइल।');
-                    } catch { alert('फ़ाइल पढ़ने में त्रुटि।'); }
+                            alert('Products imported successfully!');
+                        } else alert('Invalid file.');
+                    } catch { alert('Error reading file.'); }
                 };
                 reader.readAsText(e.target.files[0]);
             };
@@ -357,7 +610,7 @@
         }
 
         exportData() {
-            if (!this.products.length) return alert("एक्सपोर्ट करने के लिए कोई प्रोडक्ट नहीं है।");
+            if (!this.products.length) return alert("No products to export.");
             const blob = new Blob([JSON.stringify(this.products, null, 2)], { type: 'application/json' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
